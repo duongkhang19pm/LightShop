@@ -10,6 +10,9 @@ class NhomSanPham extends Model
       use HasFactory;
      
      protected $table = 'nhomsanpham';
+     protected $fillable = [
+        'tennhom', 'tennhom_slug',
+      ];
      // protected $primaryKey = 'id';
      // public $incrementing = false;
      // protected $keyType = 'string';

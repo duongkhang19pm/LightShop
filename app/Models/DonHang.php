@@ -18,9 +18,9 @@ class DonHang extends Model
          return $this->belongsTo(TinhTrang::class, 'tinhtrang_id', 'id');
     }
 
-    public function User()
+     public function TaiKhoan()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(TaiKhoan::class, 'taikhoan_id', 'id');
     }
 
     public function DonHang_ChiTiet()

@@ -12,7 +12,9 @@ class ChuDe extends Model
      // protected $primaryKey = 'id';
      // public $incrementing = false;
      // protected $keyType = 'string';
-     
+     protected $fillable = [
+        'tenchude', 'tenchude_slug',
+      ];
      public function BaiViet()
      {
         return $this->hasMany(BaiViet::class, 'chude_id', 'id');

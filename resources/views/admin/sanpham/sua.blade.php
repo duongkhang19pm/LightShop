@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="main-content container-fluid">
     <div class="page-title">
@@ -34,7 +34,7 @@
                                     <select class="form-select @error('nhomsanpham_id') is-invalid @enderror" id="nhomsanpham_id" name="nhomsanpham_id" required>
                                          <option value="" selected disabled>-- Chọn Nhóm Sản Phẩm --</option>
                                          @foreach ($nhomsanpham as $value)
-                                            <option value="{{ $value->id }}">{{ $value->tennhom }}</option>
+                                            <option value="{{ $value->id }}" {{ ($sanpham->nhomsanpham_id == $value->id) ? 'selected' : '' }}>{{ $value->tennhom }}</option>
                                         @endforeach
                                      </select>
                                       @error('nhomsanpham_id')
@@ -44,7 +44,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="loaisanpham_id">Loại Sản Phẩm:</label>
-                                    <select class="form-select @error('loaisanpham_id') is-invalid @enderror" id="loaisanpham_id" name="loaisanpham_id" required></select>
+                                    <select class="form-select @error('loaisanpham_id') is-invalid @enderror" id="loaisanpham_id" name="loaisanpham_id" required>
+                                        
+                                        @foreach($loaisanpham as $value)
+                                        <option value="{{ $value->id }}" {{ ($sanpham->loaisanpham_id == $value->id) ? 'selected' : '' }}>{{ $value->tenloai }}</option>
+                                     @endforeach
+                                    </select>
+                                     
                                     @error('loaisanpham_id')
                                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                      @enderror
@@ -173,5 +179,63 @@
 
            
         });
+    </script>
+      <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#motasanpham'), {
+                toolbar: {
+                    items: [
+                        'undo',
+                        'redo',
+                        '|',
+                        'fontColor',
+                        'highlight',
+                        '|',
+                        'bold',
+                        'underline',
+                        'italic',
+                        'subscript',
+                        'superscript',
+                        'removeFormat',
+                        '|',
+                        'alignment',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'link',
+                        'codeBlock',
+                        'imageInsert',
+                        'insertTable',
+                        'mediaEmbed',
+                        'CKFinder'
+                    ]
+                },
+                language: 'vi',
+                image: {
+                    toolbar: [
+                        'imageTextAlternative',
+                        'imageStyle:full',
+                        'imageStyle:side',
+                        'linkImage'
+                    ]
+                },
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells',
+                        'tableCellProperties',
+                        'tableProperties'
+                    ]
+                },
+                licenseKey: '',
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 @endsection

@@ -12,7 +12,9 @@ class ChatLieu extends Model
      // protected $primaryKey = 'id';
      // public $incrementing = false;
      // protected $keyType = 'string';
-
+     protected $fillable = [
+        'tenchatlieu', 'tenchatlieu_slug',
+      ];
      public function SanPham()
      {
         return $this->hasMany(SanPham::class, 'chatlieu_id', 'id');

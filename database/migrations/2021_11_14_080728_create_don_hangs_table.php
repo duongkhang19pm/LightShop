@@ -15,7 +15,7 @@ class CreateDonHangsTable extends Migration
     {
         Schema::create('donhang', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('taikhoan_id')->constrained('taikhoan');
             $table->foreignId('tinhtrang_id')->constrained('tinhtrang');
             $table->string('dienthoaigiaohang', 20);
             $table->string('diachigiaohang');

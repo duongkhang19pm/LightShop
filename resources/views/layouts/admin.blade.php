@@ -63,7 +63,7 @@
                         @else
 
                         <li class="sidebar-item  ">
-                            <a href="{{route('admin.nguoidung')}}" class='sidebar-link'>
+                            <a href="{{route('admin.taikhoan')}}" class='sidebar-link'>
                                 <i data-feather="layout" width="20"></i>
                                 <span>Thông Tin Người Dùng</span>
                             </a>
@@ -187,8 +187,8 @@
                                 <!--<div class="avatar me-1">
                                     <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
                                 </div>
-                            -->
-                                <div class="d-none d-md-block d-lg-inline-block">{{ Auth::user()->name }}</div>
+                            --><div class="d-none d-md-block d-lg-inline-block">{{ Auth::user()->name }}</div>
+                               ( Quyền Hạn: {{ Auth::user()->role }} )
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\NhomSanPhamController;
 use App\Http\Controllers\LoaiSanPhamController;
 use App\Http\Controllers\ThuongHieuController;
@@ -15,7 +16,7 @@ use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\DonHangChiTietController;
 use App\Http\Controllers\LienHeController;
-use App\Http\Controllers\NguoiDungController;
+use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\DropdownController;
 
 //Đăng Ký, đăng nhập, quên mật khẩu,...
@@ -30,6 +31,7 @@ Route::get('/', [HomeController::class, 'getHome'])->name('home');
 // Trang quản trị
 Route::prefix('admin')->name('admin.')->group(function() {
     // Trang chủ quản trị
+    Route::get('/home', [AdminController::class, 'getHome'])->name('home');
     Route::get('/', [AdminController::class, 'getHome'])->name('home');
 
     // Quản lý Nhóm sản phẩm
@@ -131,15 +133,32 @@ Route::prefix('admin')->name('admin.')->group(function() {
      Route::post('/lienhe/sua/{id}', [LienHeController::class, 'postSua'])->name('lienhe.sua');
      Route::get('/lienhe/xoa/{id}', [LienHeController::class, 'getXoa'])->name('lienhe.xoa');
     
-    // Quản lý Tài khoản người dùng
-    Route::get('/nguoidung', [NguoiDungController::class, 'getDanhSach'])->name('nguoidung');
-    Route::get('/nguoidung/them', [NguoiDungController::class, 'getThem'])->name('nguoidung.them');
-    Route::post('/nguoidung/them', [NguoiDungController::class, 'postThem'])->name('nguoidung.them');
-    Route::get('/nguoidung/sua/{id}', [NguoiDungController::class, 'getSua'])->name('nguoidung.sua');
-    Route::post('/nguoidung/sua/{id}', [NguoiDungController::class, 'postSua'])->name('nguoidung.sua');
-    Route::get('/nguoidung/xoa/{id}', [NguoiDungController::class, 'getXoa'])->name('nguoidung.xoa');
+    // Quản lý Tài khoản Quản Lý 
+    Route::get('/taikhoan', [TaiKhoanController::class, 'getDanhSach'])->name('taikhoan');
+    Route::get('/taikhoan/them', [TaiKhoanController::class, 'getThem'])->name('taikhoan.them');
+    Route::post('/taikhoan/them', [TaiKhoanController::class, 'postThem'])->name('taikhoan.them');
+    Route::get('/taikhoan/sua/{id}', [TaiKhoanController::class, 'getSua'])->name('taikhoan.sua');
+    Route::post('/taikhoan/sua/{id}', [TaiKhoanController::class, 'postSua'])->name('taikhoan.sua');
+    Route::get('/taikhoan/xoa/{id}', [TaiKhoanController::class, 'getXoa'])->name('taikhoan.xoa');
+     Route::get('/taikhoan/kichhoat/{id}', [TaiKhoanController::class, 'getKichHoat'])->name('taikhoan.kichhoat');
 
+     
 
+});
 
+Route::prefix('nhanvien')->name('nhanvien.')->group(function(){
 
+    Route::get('/home', [NhanVienController::class, 'getHome'])->name('home');
+    Route::get('/', [NhanVienController::class, 'getHome'])->name('home');
+
+     // Quản lý Sản phẩm
+    Route::get('/sanpham', [SanPhamController::class, 'getDanhSach_NhanVien'])->name('sanpham');
+    Route::get('/sanpham/them', [SanPhamController::class, 'getThem_NhanVien'])->name('sanpham.them');
+    Route::get('/sanpham/getLoai',[SanPhamController::class, 'getLoai_NhanVien'])->name('sanpham.getLoai');
+    Route::post('/sanpham/them', [SanPhamController::class, 'postThem_NhanVien'])->name('sanpham.them');
+    Route::get('/sanpham/sua/{id}', [SanPhamController::class, 'getSua_NhanVien'])->name('sanpham.sua');
+    Route::post('/sanpham/sua/{id}', [SanPhamController::class, 'postSua_NhanVien'])->name('sanpham.sua');
+    Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa_NhanVien'])->name('sanpham.xoa');
+    Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap_NhanVien'])->name('sanpham.nhap');
+    Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat_NhanVien'])->name('sanpham.xuat');
 });

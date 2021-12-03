@@ -6,14 +6,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Chủ Đề</h3>
+                <h3>Tài Khoản</h3>
                 
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Chủ Đề</li>
+                        <li class="breadcrumb-item active" aria-current="page">Tài Khoản</li>
                     </ol>
                 </nav>
             </div>
@@ -25,31 +25,46 @@
                 Danh Sách
             </div>
             <div class="card-body "id="table-hover-row">
-                <a href="{{route('admin.chude.them')}}" class="btn btn-info mb-2" ><i class="fas fa-plus"></i> Thêm mới</a>
+                <a href="{{route('admin.taikhoan.them')}}" class="btn btn-info mb-2" ><i class="fas fa-plus"></i> Thêm mới</a>
                 <table class='table  table-hover' id="table1">
                     <thead>
                         <tr>
                             <th width="5%">#</th>
-                             <th width="20%">Tên chủ đề</th>
-                             <th width="20%">Tên chủ đề không dấu</th>
+                             <th width="20%">Họ và tên</th>
+                             <th width="20%">Tên đăng nhập</th>
+                             <th width="15%">Email</th>
+                             <th width="10%">Quyền hạn</th>
+                             <th width="10%">Trạng Thái</th>
                              <th width="5%">Sửa</th>
                              <th width="5%">Xóa</th>
                         </tr>
                     </thead>
                     <tbody >
-                         @foreach($chude as $value)
+                         @foreach($taikhoan as $value)
                              <tr>
                                  <td>{{ $loop->iteration }}</td>
-                                 <td>{{ $value->tenchude }}</td>
-                                 <td>{{ $value->tenchude_slug }}</td>
+                                 <td>{{ $value->name }}</td>
+                                 <td>{{ $value->username }}</td>
+                                 <td>{{ $value->email }}</td>
+                                 <td>{{ $value->role }}</td>
+                                 <td>
+                                  @if($value->kichhoat == 0)
+                                <a href="{{ route('admin.taikhoan.kichhoat',  ['id' => $value->id] ) }}" >
+                                  Đang sử dụng
+                                </a> 
+                                
+                                @else
+                                <a href="{{ route('admin.taikhoan.kichhoat',  ['id' => $value->id] ) }}">Bị khóa</a> 
+                                @endif
+                                </td></td>
                                  <td class="align-middle text-right">
-                              <a href="{{route('admin.chude.sua', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
+                              <a href="{{route('admin.taikhoan.sua', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
                                 <i class="fa fa-pencil-alt"></i>
                                 <span class="sr-only">Edit</span>
                               </a>
                           </td>
                           <td>
-                              <a href="{{route('admin.chude.xoa', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
+                              <a href="{{route('admin.taikhoan.xoa', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
                                 <i class="far fa-trash-alt"></i>
                                 <span class="sr-only">Remove</span>
                               </a>

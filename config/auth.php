@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'taikhoan',
     ],
 
     /*
@@ -36,10 +36,15 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+    'web' => [
+    'driver' => 'session',
+    'provider' => 'taikhoan',
+    ],
+    'api' => [
+    'driver' => 'token',
+    'provider' => 'taikhoan',
+    'hash' => false,
+    ],
     ],
 
     /*
@@ -60,9 +65,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'taikhoan' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\TaiKhoan::class,
         ],
 
         // 'users' => [
@@ -87,8 +92,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'taikhoan' => [
+            'provider' => 'taikhoan',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

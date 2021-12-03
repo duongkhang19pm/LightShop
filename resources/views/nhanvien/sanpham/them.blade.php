@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.nhanvien')
 @section('content')
 
 <div class="main-content container-fluid">
@@ -12,7 +12,7 @@
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('admin.sanpham')}}">Danh sách sản phẩm</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('nhanvien.sanpham')}}">Danh sách sản phẩm</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
                     </ol>
                 </nav>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{ route('admin.sanpham.them') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('nhanvien.sanpham.them') }}" method="post" enctype="multipart/form-data">
                              @csrf
                                 <div class="form-group">
                                     <label for="nhomsanpham_id">Nhóm Sản Phẩm:</label>
@@ -142,7 +142,7 @@
 
                     $.ajax({
                         type: "GET",
-                        url: "{{ route('admin.sanpham.getLoai') }}?nhomsanpham_id=" + NhomID,
+                        url: "{{ route('nhanvien.sanpham.getLoai') }}?nhomsanpham_id=" + NhomID,
                         success: function(res) {
 
                             if (res) {

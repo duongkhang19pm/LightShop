@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Notifications\Messages\MailMessage;
+class TaiKhoan extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $table = 'taikhoan';
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +20,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -43,10 +46,10 @@ class User extends Authenticatable
     ];
     public function DonHang()
      {
-        return $this->hasMany(DonHang::class, 'user_id', 'id');
+        return $this->hasMany(DonHang::class, 'taikhoan_id', 'id');
      }
      public function BaiViet()
      {
-        return $this->hasMany(BaiViet::class, 'user_id', 'id');
+        return $this->hasMany(BaiViet::class, 'taikhoan_id', 'id');
      }
 }

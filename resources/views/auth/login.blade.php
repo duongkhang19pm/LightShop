@@ -29,15 +29,17 @@
                             <div class="form-group position-relative has-icon-left">
                                 <label for="email">Tài Khoản</label>
                                 <div class="position-relative">
-                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                    <div class="form-control-icon">
-                                        <i data-feather="user"></i>
-                                    </div>
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                     
+
+                                    <input type="text" class="form-control form-control-lg{{ ($errors->has('email') || $errors->has('username')) ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}" placeholder="Email hoặc Tên đăng nhập" required />
+
+                                    @if ($errors->has('email') || $errors->has('username'))
+                                      <span class="invalid-feedback">
+                                          <strong><i class="fa fa-exclamation-circle fa-fw"></i> 
+                                          {{ empty($errors->first('email')) ? $errors->first('username') : $errors->first('email') }}
+                                        </strong>
+                                      </span>
+                                    @endif
                                 </div>
 
                                 

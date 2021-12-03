@@ -12,7 +12,9 @@ class ThuongHieu extends Model
      // protected $primaryKey = 'id';
      // public $incrementing = false;
      // protected $keyType = 'string';
-
+    protected $fillable = [
+        'tenthuonghieu', 'tenthuonghieu_slug',
+      ];
      public function SanPham()
      {
         return $this->hasMany(SanPham::class, 'thuonghieu_id', 'id');

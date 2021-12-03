@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.nhanvien')
 
 @section('content')
 
@@ -25,7 +25,7 @@
                 Danh Sách
             </div>
             <div class="card-body "id="table-hover-row">
-                <a href="{{route('admin.sanpham.them')}}" class="btn btn-info mb-2" ><i class="fas fa-plus"></i> Thêm mới</a>
+                <a href="{{route('nhanvien.sanpham.them')}}" class="btn btn-info mb-2" ><i class="fas fa-plus"></i> Thêm mới</a>
                 <table class='table  table-hover' id="table1">
                     <thead>
                              <tr>
@@ -55,13 +55,13 @@
                                 <td>{{ $value->tensanpham_slug }}</td>
                                 <td  class="text-end">{{ $value->soluong }}</td>
                                 <td class="align-middle text-right">
-                              <a href="{{route('admin.sanpham.sua', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
+                              <a href="{{route('nhanvien.sanpham.sua', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
                                 <i class="fa fa-pencil-alt"></i>
                                 <span class="sr-only">Edit</span>
                               </a>
                           </td>
                           <td>
-                              <a href="{{route('admin.sanpham.xoa', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
+                              <a href="{{route('nhanvien.sanpham.xoa', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
                                 <i class="far fa-trash-alt"></i>
                                 <span class="sr-only">Remove</span>
                               </a>
