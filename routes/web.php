@@ -32,7 +32,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     // Trang chủ quản trị
     Route::get('/', [AdminController::class, 'getHome'])->name('home');
 
-    // Quản lý Nhom sản phẩm
+    // Quản lý Nhóm sản phẩm
     Route::get('/nhomsanpham', [NhomSanPhamController::class, 'getDanhSach'])->name('nhomsanpham');
     Route::get('/nhomsanpham/them', [NhomSanPhamController::class, 'getThem'])->name('nhomsanpham.them');
     Route::post('/nhomsanpham/them', [NhomSanPhamController::class, 'postThem'])->name('nhomsanpham.them');
@@ -48,7 +48,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::post('/loaisanpham/sua/{id}', [LoaiSanPhamController::class, 'postSua'])->name('loaisanpham.sua');
     Route::get('/loaisanpham/xoa/{id}', [LoaiSanPhamController::class, 'getXoa'])->name('loaisanpham.xoa');
 
-    // Quản lý Thuong hieu
+    // Quản lý Thương hieu
      Route::get('/thuonghieu', [ThuongHieuController::class, 'getDanhSach'])->name('thuonghieu');
      Route::get('/thuonghieu/them', [ThuongHieuController::class, 'getThem'])->name('thuonghieu.them');
      Route::post('/thuonghieu/them', [ThuongHieuController::class, 'postThem'])->name('thuonghieu.them');
@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
      Route::post('/chatlieu/sua/{id}', [ChatLieuController::class, 'postSua'])->name('chatlieu.sua');
      Route::get('/chatlieu/xoa/{id}', [ChatLieuController::class, 'getXoa'])->name('chatlieu.xoa');
 
-    // Quản lý ChuDe
+    // Quản lý Chủ Đề
     Route::get('/chude', [ChuDeController::class, 'getDanhSach'])->name('chude');
     Route::get('/chude/them', [ChuDeController::class, 'getThem'])->name('chude.them');
     Route::post('/chude/them', [ChuDeController::class, 'postThem'])->name('chude.them');
@@ -81,7 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::post('/chude/sua/{id}', [ChuDeController::class, 'postSua'])->name('chude.sua');
     Route::get('/chude/xoa/{id}', [ChuDeController::class, 'getXoa'])->name('chude.xoa');
 
-    // Quản lý Bai Viet
+    // Quản lý Bài Viết
     Route::get('/baiviet', [BaiVietController::class, 'getDanhSach'])->name('baiviet');
     Route::get('/baiviet/them', [BaiVietController::class, 'getThem'])->name('baiviet.them');
     Route::post('/baiviet/them', [BaiVietController::class, 'postThem'])->name('baiviet.them');

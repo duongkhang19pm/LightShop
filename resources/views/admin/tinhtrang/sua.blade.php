@@ -4,15 +4,15 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Xuất xứ</h3>
+                <h3>Tình trạng đơn hàng</h3>
                 
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('admin.xuatxu')}}">Danh sách Xuất Xứ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cập nhật xuất xứ</li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.tinhtrang')}}">Danh sách tình trạng đơn hàng</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Cập nhật tình trạng đơn hàng</li>
                     </ol>
                 </nav>
             </div>
@@ -27,13 +27,13 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{ route('admin.xuatxu.sua',['id'=> $xuatxu->id]) }}" method="post">
+                            <form action="{{ route('admin.tinhtrang.sua',['id'=> $tinhtrang->id]) }}" method="post">
                             @csrf
                                   <div class="mb-3">
                                         <div class="form-group">
-                                            <label class="form-label" for="tenxuatxu">Tên xuất xứ</label>
-                                             <input type="text" class="form-control @error('tenxuatxu') is-invalid @enderror" id="tenxuatxu" name="tenxuatxu" value="{{$xuatxu->tenxuatxu}}"required />
-                                             @error('tenxuatxu')
+                                            <label class="form-label" for="tinhtrang">Tình trạng đơn hàng</label>
+                                             <input type="text" class="form-control @error('tinhtrang') is-invalid @enderror" id="tinhtrang" name="tinhtrang" value="{{$tinhtrang->tinhtrang}}"required />
+                                             @error('tinhtrang')
                                                  <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                              @enderror
 

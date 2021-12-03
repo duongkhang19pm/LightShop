@@ -24,21 +24,21 @@ class ThuongHieuController extends Controller
 
         $this->validate($request, [
             'tenthuonghieu' => ['required', 'string', 'max:191','unique:thuonghieu'],
-            'hinhanh' => ['nullable', 'image', 'max:2048']
+            'hinhanh' => ['nullable', 'image', 'max:1024']
         ]);
         //upload file hinh
         if ($request->hasFile('hinhanh'))
         {
-            $extension=$request->file('hinhanh')->extension();
-            $filename=Str::slug($request->tenthuonghieu,'-').'.'.$extension;
-            $path=Storage::putFileAs('thuonghieu',$request->file('hinhanh'),$filename);
-
+            $extension = $request->file('hinhanh')->extension();
+            $fileName = Str::slug($request->tenthuonghieu,'-').'.'.$extension;
+            // Upload vào thư mục và trả về đường dẫn
+            $path = Storage::putFileAs('thuonghieu', $request->file('hinhanh'), $fileName);
         }
         //thêm
         $orm = new ThuongHieu();
         $orm->tenthuonghieu = $request->tenthuonghieu;
         $orm->tenthuonghieu_slug = Str::slug($request->tenthuonghieu,'-');
-        if($request->hasFile('hinhanh'))$orm->hinhanh=$path;
+        if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
         $orm->save();
 
          //quay về danh sách
@@ -58,23 +58,25 @@ class ThuongHieuController extends Controller
         //kiểm tra 
 
         $this->validate($request, [
-            'tenthuonghieu' => ['required', 'string', 'max:191','unique:thuonghieu,tenthuonghieu,'.$id],
-            'hinhanh' => ['nullable', 'image', 'max:2048']
+            'tenthuonghieu'=>['required','string','max:191','unique:thuonghieu,tenthuonghieu,'.$id],
+            'hinhanh' => ['nullable','image','max:1024']
         ]);
-        if ($request->hasFile('hinhanh'))
-        {
+         if($request->hasFile('hinhanh'))
+       {
             $orm=ThuongHieu::find($id);
             Storage::delete($orm->hinhanh);
-            $extension=$request->file('hinhanh')->extension();
-            $filename=Str::slug($request->tenthuonghieu,'-').'.'.$extension;
-            $path=Storage::putFileAs('thuonghieu',$request->file('hinhanh'),$filename);
 
-        }
+
+            $extension = $request->file('hinhanh')->extension();
+            $fileName = Str::slug($request->tenthuonghieu,'-').'.'.$extension;
+            // Upload vào thư mục và trả về đường dẫn
+            $path = Storage::putFileAs('thuonghieu', $request->file('hinhanh'), $fileName);
+       }
         // sửa
         $orm =ThuongHieu::find($id);
         $orm->tenthuonghieu = $request->tenthuonghieu;
         $orm->tenthuonghieu_slug = Str::slug($request->tenthuonghieu,'-');
-        if($request->hasFile('hinhanh'))$orm->hinhanh=$path;
+        if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
         $orm->save();
         //quay về danh sách
         return redirect()->route('admin.thuonghieu');

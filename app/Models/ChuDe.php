@@ -13,13 +13,8 @@ class ChuDe extends Model
      // public $incrementing = false;
      // protected $keyType = 'string';
      
-       public function NhomSanPham()
+     public function BaiViet()
      {
-        return $this->hasMany(NhomSanPham::class, 'sanpham_id', 'id');
-     }
-
-     public function SanPham()
-     {
-        return $this->hasMany(SanPham::class, 'loaisanpham_id', 'id');
+        return $this->hasMany(BaiViet::class, 'chude_id', 'id');
      }
 }
