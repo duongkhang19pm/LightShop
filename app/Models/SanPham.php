@@ -12,7 +12,19 @@ class SanPham extends Model
     // protected $primaryKey = 'id';
     // public $incrementing = false;
     // protected $keyType = 'string';
-
+    protected $fillable = [
+         'nhomsanpham_id',
+         'loaisanpham_id',
+         'thuonghieu_id',
+         'xuatxu_id',
+         'chatlieu_id',
+         'tensanpham',
+         'tensanpham_slug',
+         'soluong',
+         'dongia',
+         'hinhanh',
+         'motasanpham',
+     ];
     public function NhomSanPham()
     {
     return $this->belongsTo(NhomSanPham::class, 'nhomsanpham_id', 'id');

@@ -13,7 +13,9 @@ class ThuongHieu extends Model
      // public $incrementing = false;
      // protected $keyType = 'string';
     protected $fillable = [
-        'tenthuonghieu', 'tenthuonghieu_slug',
+        'tenthuonghieu', 
+        'tenthuonghieu_slug',
+        'hinhanh',
       ];
      public function SanPham()
      {

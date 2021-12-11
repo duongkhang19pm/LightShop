@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="stylesheet" href="{{asset('public/assets/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.css')}}">
 
-    <link rel="stylesheet" href="{{asset('public/assets/vendors/chartjs/Chart.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/backend/vendors/chartjs/Chart.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('public/assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
-    <link rel="stylesheet" href="{{asset('public/assets/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('public/backend/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
+    <link rel="stylesheet" href="{{asset('public/backend/css/app.css')}}">
     <link rel="shortcut icon" href="{{asset('public/images/logo.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,7 +21,7 @@
     <div id="app">
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
-                <div class="sidebar-header" href="{{ route('home') }}">
+                <div class="sidebar-header" href="{{ route('admin.home') }}">
                     <img src="{{asset('public/images/logo.png')}}" alt="" srcset="">
                    {{ config('app.name', 'Laravel') }}
                 </div>
@@ -34,8 +34,8 @@
 
 
                         <li class="sidebar-item active ">
-                            <a href="{{ route('home') }}" class='sidebar-link'>
-                                <i data-feather="home" width="20"></i>
+                            <a href="{{ route('admin.home') }}" class='sidebar-link'>
+                                <i data-feather="admin.home" width="20"></i>
                                 <span>Dashboard</span>
                             </a>
 
@@ -185,7 +185,7 @@
                             <a href="#" data-bs-toggle="dropdown"
                                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <!--<div class="avatar me-1">
-                                    <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
+                                    <img src="backend/images/avatar/avatar-s-1.png" alt="" srcset="">
                                 </div>
                             --><div class="d-none d-md-block d-lg-inline-block">{{ Auth::user()->name }}</div>
                                ( Quyền Hạn: {{ Auth::user()->role }} )
@@ -220,15 +220,15 @@
             </footer>
         </div>
     </div>
-    <script src="{{asset('public/assets/js/feather-icons/feather.min.js')}}"></script>
-    <script src="{{asset('public/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('public/assets/js/app.js')}}"></script>
+    <script src="{{asset('public/backend/js/feather-icons/feather.min.js')}}"></script>
+    <script src="{{asset('public/backend/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('public/backend/js/app.js')}}"></script>
 
-    <script src="{{asset('public/assets/vendors/chartjs/Chart.min.js')}}"></script>
-    <script src="{{asset('public/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
-    <script src="{{asset('public/assets/js/pages/dashboard.js')}}"></script>
+    <script src="{{asset('public/backend/vendors/chartjs/Chart.min.js')}}"></script>
+    <script src="{{asset('public/backend/vendors/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{asset('public/backend/js/pages/dashboard.js')}}"></script>
 
-    <script src="{{asset('public/assets/js/main.js')}}"></script>
+    <script src="{{asset('public/backend/js/main.js')}}"></script>
 </body>
 
 </html>

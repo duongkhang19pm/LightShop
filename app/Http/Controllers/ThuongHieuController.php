@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\ThuongHieu;
 use Str;
 use Storage;
-
+use App\Imports\ThuongHieuImport;
+use App\Exports\ThuongHieuExport;
+use Excel;
 class ThuongHieuController extends Controller
 {
     public function getDanhSach()
@@ -88,5 +90,18 @@ class ThuongHieuController extends Controller
          $orm->delete();
          Storage::delete($orm->hinhanh);
         return redirect()->route('admin.thuonghieu');
+    }
+    // Nhập từ Excel
+     public function postNhap(Request $request)
+     {
+        Excel::import(new ThuongHieuImport, $request->file('file_excel'));
+
+        return redirect()->route('admin.thuonghieu');
+     }
+
+     // Xuất ra Excel
+    public function getXuat()
+    {
+        return Excel::download(new ThuongHieuExport, 'danh-sach-thuong-hieu.xlsx');
     }
 }

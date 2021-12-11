@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhomSanPhamController;
 use App\Http\Controllers\LoaiSanPhamController;
 use App\Http\Controllers\ThuongHieuController;
@@ -22,8 +23,7 @@ use App\Http\Controllers\DropdownController;
 //Đăng Ký, đăng nhập, quên mật khẩu,...
 Auth::routes();
 // Trang chủ
-Route::get('/', [HomeController::class, 'getHome'])->name('home');
-
+Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
 
 
 
@@ -57,7 +57,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
      Route::get('/thuonghieu/sua/{id}', [ThuongHieuController::class, 'getSua'])->name('thuonghieu.sua');
      Route::post('/thuonghieu/sua/{id}', [ThuongHieuController::class, 'postSua'])->name('thuonghieu.sua');
      Route::get('/thuonghieu/xoa/{id}', [ThuongHieuController::class, 'getXoa'])->name('thuonghieu.xoa');
-
+     Route::post('/thuonghieu/nhap', [ThuongHieuController::class, 'postNhap'])->name('thuonghieu.nhap');
+    Route::get('/thuonghieu/xuat', [ThuongHieuController::class, 'getXuat'])->name('thuonghieu.xuat');
 
     // Quản lý Xuất xứ
      Route::get('/xuatxu', [XuatXuController::class, 'getDanhSach'])->name('xuatxu');
@@ -90,6 +91,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/baiviet/sua/{id}', [BaiVietController::class, 'getSua'])->name('baiviet.sua');
     Route::post('/baiviet/sua/{id}', [BaiVietController::class, 'postSua'])->name('baiviet.sua');
     Route::get('/baiviet/xoa/{id}', [BaiVietController::class, 'getXoa'])->name('baiviet.xoa');
+    Route::get('/baiviet/kiemduyet/{id}', [BaiVietController::class, 'getKiemDuyet'])->name('baiviet.kiemduyet');
 
 
      // Quản lý Tình trạng đơn hàng
@@ -108,6 +110,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/sanpham/sua/{id}', [SanPhamController::class, 'getSua'])->name('sanpham.sua');
     Route::post('/sanpham/sua/{id}', [SanPhamController::class, 'postSua'])->name('sanpham.sua');
     Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa'])->name('sanpham.xoa');
+    Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap'])->name('sanpham.nhap');
+    Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('sanpham.xuat');
     Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap'])->name('sanpham.nhap');
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('sanpham.xuat');
 
@@ -161,4 +165,21 @@ Route::prefix('nhanvien')->name('nhanvien.')->group(function(){
     Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa_NhanVien'])->name('sanpham.xoa');
     Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap_NhanVien'])->name('sanpham.nhap');
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat_NhanVien'])->name('sanpham.xuat');
+
+    // Quản lý Bài Viết
+    Route::get('/baiviet', [BaiVietController::class, 'getDanhSach_NhanVien'])->name('baiviet');
+    Route::get('/baiviet/them', [BaiVietController::class, 'getThem_NhanVien'])->name('baiviet.them');
+    Route::post('/baiviet/them', [BaiVietController::class, 'postThem_NhanVien'])->name('baiviet.them');
+    Route::get('/baiviet/sua/{id}', [BaiVietController::class, 'getSua_NhanVien'])->name('baiviet.sua');
+    Route::post('/baiviet/sua/{id}', [BaiVietController::class, 'postSua_NhanVien'])->name('baiviet.sua');
+    Route::get('/baiviet/xoa/{id}', [BaiVietController::class, 'getXoa_NhanVien'])->name('baiviet.xoa');
+    Route::get('/baiviet/kiemduyet/{id}', [TaiKhoanController::class, 'getKiemDuyet_NhanVien'])->name('baiviet.kiemduyet');
+});
+
+Route::prefix('khachhang')->name('khachhang.')->group(function(){
+
+    Route::get('/home', [KhachHangController::class, 'getHome'])->name('home');
+    Route::get('/', [KhachHangController::class, 'getHome'])->name('home');
+
+     
 });

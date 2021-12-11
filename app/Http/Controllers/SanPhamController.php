@@ -12,6 +12,9 @@ use App\Models\ChatLieu;
 use Str;
 use File;
 use Storage;
+use App\Imports\SanPhamImport;
+use App\Exports\SanPhamExport;
+use Excel;
 class SanPhamController extends Controller
 {
     public function getDanhSach()
@@ -264,5 +267,19 @@ class SanPhamController extends Controller
         $orm->delete();
         Storage::delete($orm->hinhanh);
         return redirect()->route('nhanvien.sanpham');
+    }
+
+    // Nhập từ Excel
+     public function postNhap(Request $request)
+     {
+        Excel::import(new SanPhamImport, $request->file('file_excel'));
+
+        return redirect()->route('admin.sanpham');
+     }
+
+     // Xuất ra Excel
+    public function getXuat()
+    {
+        return Excel::download(new SanPhamExport, 'danh-sach-san-pham.xlsx');
     }
 }
