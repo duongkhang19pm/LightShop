@@ -26,8 +26,6 @@
             </div>
             <div class="card-body "id="table-hover-row">
                 <a href="{{route('admin.baiviet.them')}}" class="btn btn-info mb-2" ><i class="fas fa-plus"></i>Thêm mới</a>
-                <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-upload"></i> Nhập từ Excel</a>
-                <a href="{{ route('admin.sanpham.xuat') }}" class="btn btn-success"><i class="fas fa-download"></i> Xuất ra Excel</a>
 
                 <table class='table  table-hover' id="table1">
                     <thead>

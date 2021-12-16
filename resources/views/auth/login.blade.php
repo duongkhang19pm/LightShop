@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>{{ config('app.name', 'Laravel') }}</title>
-      <link rel="stylesheet" href="{{asset('public/assets/css/bootstrap.css')}}">
+      <link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.css')}}">
 
-    <link rel="stylesheet" href="{{asset('public/assets/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('public/backend/css/app.css')}}">
     <link rel="shortcut icon" href="{{asset('public/images/logo.png')}}" type="image/x-icon">
 </head>
 
@@ -103,10 +103,10 @@
     </div>
 
 </div>
-    <script src="{{asset('public/assets/js/feather-icons/feather.min.js')}}"></script>
-     <script src="{{asset('public/assets/js/app.js')}}"></script>
+    <script src="{{asset('public/backend/js/feather-icons/feather.min.js')}}"></script>
+     <script src="{{asset('public/backend/js/app.js')}}"></script>
 
-    <script src="{{asset('public/assets/js/main.js')}}"></script>
+    <script src="{{asset('public/backend/js/main.js')}}"></script>
 </body>
 
 </html>

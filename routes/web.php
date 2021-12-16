@@ -24,12 +24,12 @@ use App\Http\Controllers\DropdownController;
 Auth::routes();
 // Trang chủ
 Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
-
+Route::get('/403', [HomeController::class, 'get403'])->name('403');
 
 
 
 // Trang quản trị
-Route::prefix('admin')->name('admin.')->group(function() {
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function() {
     // Trang chủ quản trị
     Route::get('/home', [AdminController::class, 'getHome'])->name('home');
     Route::get('/', [AdminController::class, 'getHome'])->name('home');
@@ -150,7 +150,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
 });
 
-Route::prefix('nhanvien')->name('nhanvien.')->group(function(){
+Route::prefix('nhanvien')->name('nhanvien.')->middleware('nhanvien')->group(function(){
 
     Route::get('/home', [NhanVienController::class, 'getHome'])->name('home');
     Route::get('/', [NhanVienController::class, 'getHome'])->name('home');
@@ -174,6 +174,12 @@ Route::prefix('nhanvien')->name('nhanvien.')->group(function(){
     Route::post('/baiviet/sua/{id}', [BaiVietController::class, 'postSua_NhanVien'])->name('baiviet.sua');
     Route::get('/baiviet/xoa/{id}', [BaiVietController::class, 'getXoa_NhanVien'])->name('baiviet.xoa');
     Route::get('/baiviet/kiemduyet/{id}', [TaiKhoanController::class, 'getKiemDuyet_NhanVien'])->name('baiviet.kiemduyet');
+
+      // Quản lý Liên hệ
+     Route::get('/lienhe', [LienHeController::class, 'getDanhSach_NhanVien'])->name('lienhe');
+     Route::get('/lienhe/them', [LienHeController::class, 'getThem_NhanVien'])->name('lienhe.them');
+     Route::post('/lienhe/them', [LienHeController::class, 'postThem_NhanVien'])->name('lienhe.them');
+     Route::get('/lienhe/xoa/{id}', [LienHeController::class, 'getXoa_NhanVien'])->name('lienhe.xoa');
 });
 
 Route::prefix('khachhang')->name('khachhang.')->group(function(){

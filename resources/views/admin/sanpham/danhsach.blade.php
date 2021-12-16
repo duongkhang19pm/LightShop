@@ -43,7 +43,7 @@
                     <tbody>
                          @foreach($sanpham as $value)
                              <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $sanpham->firstItem() + $loop->index }}</td>
                                 <td class="text-center"><img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}" height="70" width="100"></td>
                                 <td>
                                     Nhóm Sản Phẩm: {{ $value->NhomSanPham->tennhom }}<br/>
@@ -73,6 +73,12 @@
                         
                     </tbody>
                 </table>
+                </div>
+                      <ul class="pagination justify-content-center mt-4">
+                       {{$sanpham->links()}}
+                     </ul>
+                  </div>
+                
             </div>
         </div>
 

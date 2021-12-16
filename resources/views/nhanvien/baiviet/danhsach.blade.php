@@ -12,7 +12,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('nhanvien.home') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Bài Viết</li>
                     </ol>
                 </nav>
@@ -52,9 +52,9 @@
                                 <td>{{ $value->luotxem}}</td>
                             <td class="text-center">
                                 @if($value->kiemduyet == 1)
-                                    <a href="{{ route('nhanvien.baiviet.kiemduyet', ['id' => $value->id]) }}"><i class="fas fa-check-circle" title="Đã Duyệt"></i></a>
+                                    <a><i class="fas fa-check-circle" title="Đã Duyệt"></i></a>
                                 @else
-                                    <a href="{{ route('nhanvien.baiviet.kiemduyet', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger" title="Chưa Duyệt"></i></a>
+                                    <a><i class="fas fa-ban text-danger" title="Chưa Duyệt"></i></a>
                                 @endif
                             </td>
                                  <td class="align-middle text-right">

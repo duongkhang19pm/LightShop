@@ -71,4 +71,47 @@ class LienHeController extends Controller
          $orm->delete();
         return redirect()->route('admin.lienhe');
     }
+
+
+
+
+    public function getDanhSach_NhanVien()
+    {
+        $lienhe = LienHe::all();
+        return view('nhanvien.lienhe.danhsach',compact('lienhe'));
+    }
+    public function getThem_NhanVien()
+    {
+        return view('nhanvien.lienhe.them');
+    }
+    public function postThem_NhanVien(Request $request)
+    {
+        //kiểm tra 
+
+        $this->validate($request, [
+            'hovaten' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'max:191'],
+            'sodienthoai' => ['required', 'string', 'max:12', 'min:10'],
+            'noidung' => ['required']
+        ]);
+        //thêm
+        $orm = new LienHe();
+        $orm->hovaten = $request->hovaten;
+        $orm->email = $request->email;
+        $orm->sodienthoai = $request->sodienthoai;
+        $orm->noidung = $request->noidung;
+        $orm->save();
+         //quay về danh sách
+        return redirect()->route('nhanvien.lienhe');
+
+
+       
+    }
+    public function getXoa_NhanVien($id)
+    {
+            
+         $orm = LienHe::find($id);
+         $orm->delete();
+        return redirect()->route('nhanvien.lienhe');
+    }
 }

@@ -21,7 +21,7 @@
     <div id="app">
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
-                <div class="sidebar-header" href="{{ route('home') }}">
+                <div class="sidebar-header" href="{{ route('nhanvien.home') }}">
                     <img src="{{asset('public/images/logo.png')}}" alt="" srcset="">
                    {{ config('app.name', 'Laravel') }}
                 </div>
@@ -34,7 +34,7 @@
 
 
                         <li class="sidebar-item active ">
-                            <a href="{{ route('home') }}" class='sidebar-link'>
+                            <a href="{{ route('nhanvien.home') }}" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -88,7 +88,7 @@
 
                         </li>
                          <li class="sidebar-item  ">
-                            <a href="#" class='sidebar-link'>
+                            <a href="{{route('nhanvien.lienhe')}}" class='sidebar-link'>
                                 <i data-feather="layout" width="20"></i>
                                 <span>Liên hệ</span>
                             </a>
@@ -111,7 +111,7 @@
                                
 
                                 <li>
-                                    <a href="#">Bài Viết</a>
+                                    <a href="{{route('nhanvien.baiviet')}}">Bài Viết</a>
                                 </li>
 
                                 

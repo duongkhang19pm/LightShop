@@ -19,7 +19,7 @@ class SanPhamController extends Controller
 {
     public function getDanhSach()
     {
-        $sanpham = SanPham::all();
+        $sanpham = SanPham::paginate(20);
         return view('admin.sanpham.danhsach',compact('sanpham'));
     }
     public function getThem()

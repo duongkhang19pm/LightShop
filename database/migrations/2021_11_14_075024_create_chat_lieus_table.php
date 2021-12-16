@@ -21,11 +21,14 @@ class CreateChatLieusTable extends Migration
             $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->engine = 'InnoDB';
         });
-        ChatLieu::create(['tenchatlieu' => 'Kim Cương','tenchatlieu_slug' => 'kim-cuong']);
-         ChatLieu::create(['tenchatlieu' => 'Pha Lê','tenchatlieu_slug' => 'pha-le']);
-         ChatLieu::create(['tenchatlieu' => 'Vàng','tenchatlieu_slug' => 'vang']);
-         ChatLieu::create(['tenchatlieu' => 'Bạc','tenchatlieu_slug' => 'bac']);
-         ChatLieu::create(['tenchatlieu' => 'Đồng','tenchatlieu_slug' => 'dong']);
+            ChatLieu::create(['tenchatlieu' => 'Kim Cương','tenchatlieu_slug' => 'kim-cuong']);
+            ChatLieu::create(['tenchatlieu' => 'Pha Lê','tenchatlieu_slug' => 'pha-le']);
+            ChatLieu::create(['tenchatlieu' => 'Vàng','tenchatlieu_slug' => 'vang']);
+            ChatLieu::create(['tenchatlieu' => 'Bạc','tenchatlieu_slug' => 'bac']);
+            ChatLieu::create(['tenchatlieu' => 'Đồng','tenchatlieu_slug' => 'dong']);
+            ChatLieu::create(['tenchatlieu' => 'Hợp Kim','tenchatlieu_slug' => 'hop-kim']);
+            ChatLieu::create(['tenchatlieu' => 'Mica','tenchatlieu_slug' => 'mica']);
+            ChatLieu::create(['tenchatlieu' => 'Gỗ','tenchatlieu_slug' => 'go']);
         }
 
 

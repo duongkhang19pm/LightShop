@@ -23,9 +23,13 @@ class CreateXuatXusTable extends Migration
         });
         XuatXu::create(['tenxuatxu' => 'Hoa Kỳ','tenxuatxu_slug' => 'hoa-ky']);
         XuatXu::create(['tenxuatxu' => 'Anh','tenxuatxu_slug' => 'anh']);
-        XuatXu::create(['tenxuatxu' => 'Phát','tenxuatxu_slug' => 'phat']);
+        XuatXu::create(['tenxuatxu' => 'Pháp','tenxuatxu_slug' => 'phap']);
         XuatXu::create(['tenxuatxu' => 'Trung Quốc','tenxuatxu_slug' => 'trung-quoc']);
         XuatXu::create(['tenxuatxu' => 'Việt Nam','tenxuatxu_slug' => 'viet-nam']);
+        XuatXu::create(['tenxuatxu' => 'Thái Lan','tenxuatxu_slug' => 'thai-lan']);
+        XuatXu::create(['tenxuatxu' => 'Nga','tenxuatxu_slug' => 'nga']);
+        XuatXu::create(['tenxuatxu' => 'Đức','tenxuatxu_slug' => 'duc']);
+        XuatXu::create(['tenxuatxu' => 'Ý','tenxuatxu_slug' => 'y']);
     }
 
     /**

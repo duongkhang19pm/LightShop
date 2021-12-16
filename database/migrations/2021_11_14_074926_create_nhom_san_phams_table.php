@@ -27,6 +27,7 @@ class CreateNhomSanPhamsTable extends Migration
         NhomSanPham::create(['tennhom' => 'Đèn Bàn','tennhom_slug' => 'den-ban']);
         NhomSanPham::create(['tennhom' => 'Đèn Tường','tennhom_slug' => 'den-tuong']);
         NhomSanPham::create(['tennhom' => 'Đèn Thả','tennhom_slug' => 'den-tha']);
+        
     }
 
     /**
