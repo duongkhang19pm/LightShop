@@ -1,236 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
-
-    <!-- title -->
+  <head>
+  
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{asset('public/images/logo.png')}}">
-    <!-- google font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/all.min.css')}}">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="{{asset('public/assets/bootstrap/css/bootstrap.min.css')}}">
-    <!-- owl carousel -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/owl.carousel.css')}}">
-    <!-- magnific popup -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/magnific-popup.css')}}">
-    <!-- animate css -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/animate.css')}}">
-    <!-- mean menu css -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/meanmenu.min.css')}}">
-    <!-- main style -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/main.css')}}">
-    <!-- responsive -->
-    <link rel="stylesheet" href="{{asset('public/assets/css/responsive.css')}}">
-
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{{asset('public/frontend/css/animate.css')}}">
     
-    <!-- header -->
-    <div class="top-header-area" id="sticker">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-12 col-sm-12 text-center">
-                    <div class="main-menu-wrap">
-                        <!-- logo -->
-                        <div class="site-logo ">
-                            <a href="{{route('frontend')}}">
-                                <img src="{{asset('public/images/logo.png')}}" width="25%" alt="">
-                                <h4 class="text-white">{{ config('app.name', 'Laravel') }}</h4>
-                            </a>
-                        </div>
-                        <!-- logo -->
-
-                        <!-- menu start -->
-                        <nav class="main-menu">
-                            <ul>
-                                <li class="current-list-item"><a href="{{route('frontend')}}">Trang chủ</a>
-                                </li>
-                                <li><a href="about.html">Về chúng tôi</a></li>
-                                <li><a href="#">Sản phẩm</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="404.html">404 page</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Check Out</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="news.html">News</a></li>
-                                        <li><a href="shop.html">Shop</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="news.html">Tin tức</a>
-                                </li>
-                                <li><a href="contact.html">Liên hệ</a></li>
-
-                                <li>
-                                    <div class="header-icons">
-                                        
-                                        <li><a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a></li>
-                                        <li><a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
-
-                                        @guest
-                                            @if (Route::has('login'))
-                                                 
-                                                    <li><a class="shopping-cart" href="{{ route('login') }}"><i class="fas fa-user"></i></a></li>
-                                            
-                                            @endif
-                                        @else
-                                          
-                                            <li><a href="#"><i class="fas fa-user"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="#">{{ Auth::user()->name }}</a></li>
-                                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i data-feather="log-out"></i> Đăng Xuất</a>
-                                                        <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
-                                                        @csrf
-                                                    </form>
-                                                    </li>
-
-                                                    
-                                                </ul>
-                                            </li>
-                                        @endguest
-                                        
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                        <div class="mobile-menu"></div>
-                        <!-- menu end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end header -->
+    <link rel="stylesheet" href="{{asset('public/frontend/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/magnific-popup.css')}}">
     
-    <!-- search area -->
-    <div class="search-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <span class="close-btn"><i class="fas fa-window-close"></i></span>
-                    <div class="search-bar">
-                        <div class="search-bar-tablecell">
-                            <h3>Bạn cần tìm gì ?</h3>
-                            <input type="text" placeholder="Từ khóa">
-                            <button type="submit">Tìm kiếm <i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end search area -->
-    @yield('content')
-    
+    <link rel="stylesheet" href="{{asset('public/frontend/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">
 
-    <!-- footer -->
-    <div class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box about-widget">
-                        <h2 class="widget-title">Về chúng tôi</h2>
-                        <p>Chúng tôi cam kết mang đến cho Quý khách hàng những sản phẩm chính hãng, những mẫu mã mới nhất với chất lượng cao và giá cả hợp lý, góp phần làm cho cuộc sống của quý khách ngày càng tốt đẹp hơn</p>
+  </head>
+  <body>
+
+    <div class="wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 d-flex align-items-center">
+                        <p class="mb-0 phone pl-md-2">
+                            <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span>+84 999 999 999</a> 
+                            <a href="#"><span class="fa fa-paper-plane mr-1"></span> LightStore@gmail.com</a>
+                        </p>
                     </div>
+                    <div class="col-md-6 d-flex justify-content-md-end">
+                        <div class="social-media mr-4">
+                        <p class="mb-0 d-flex">
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+                        </p>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box get-in-touch">
-                        <h2 class="widget-title">Địa chỉ</h2>
-                        <ul>
-                            <li>An Giang University</li>
-                            <li>LightStore@student.agu.edu.vn</li>
-                            <li>+84 999 999 999</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box pages">
-                        <h2 class="widget-title">LightStore</h2>
-                        <ul>
-                            <li><a href="{{route('frontend')}}">Trang chủ</a></li>
-                            <li><a href="about.html">Về chúng tôi</a></li>
-                            <li><a href="services.html">Sản phẩm</a></li>
-                            <li><a href="news.html">Tin tức</a></li>
-                            <li><a href="contact.html">liên hệ</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-box subscribe">
-                        <h2 class="widget-title">Đăng ký FanPage</h2>
-                        <p>Đăng ký danh sách gửi thư của chúng tôi để nhận được các bản cập nhật mới nhất.</p>
-                        <form action="index.html">
-                            <input type="email" placeholder="Email">
-                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                <div class="reg">
+                    
+                      @guest
+                        @if (Route::has('login'))
+                        <p class="mb-0">
+                        <a href="{{ route('login') }}">Đăng nhập</a></p>
+                        @endif
+                      @else
+                        <p class="mb-0">
+                        <a class="mr-3" href="#">{{ Auth::user()->name }}  </a>
+                        <a  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
+                          @csrf
                         </form>
+                        </p>
+                      @endguest
+
+
+                </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- end footer -->
     
-    <!-- copyright -->
-    <div class="copyright">
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="{{route('frontend')}}">Light <span>Store</span></a>
+          <div class="order-lg-last btn-group">
+          <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="flaticon-shopping-bag"></span>
+            <div class="d-flex justify-content-center align-items-center"><small>{{ Cart::count() ?? 0 }}</small></div>
+          </a>
+          @if(Cart::count())
+          <div class="dropdown-menu dropdown-menu-right">
+                    @foreach(Cart::content() as $value)
+                    <div class="dropdown-item d-flex align-items-start" href="#">
+                     
+                        <div class="img" style="background-image: url(images/prod-1.jpg);"></div>
+                        <div class="text pl-3">
+                            <h4>{{ $value->name }}</h4>
+                            <p class="mb-0"><a href="#" class="price">{{ number_format($value->price) }}</span><sup>đ</sup></a><span class="quantity ml-3">Số Lượng: {{ $value->qty }}</span></p>
+                        </div>
+                      
+                    </div>
+                    @endforeach
+                    <a class="dropdown-item text-center btn-link d-block w-100" href="{{ route('frontend.giohang') }}">
+                        Xem Tất Cả
+                        <span class="ion-ios-arrow-round-forward"></span>
+                    </a>
+
+            
+          </div>
+          @endif
+        </div>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="{{route('frontend')}}" class="nav-link">Trang chủ</a></li>
+              <li class="nav-item"><a href="about.html" class="nav-link">về chúng tôi</a></li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">sản phẩm</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="product.html">Products</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a>
+                <a class="dropdown-item" href="cart.html">Cart</a>
+                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              </div>
+            </li>
+              <li class="nav-item"><a href="blog.html" class="nav-link">Tin tức</a></li>
+              <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- END nav -->
+     @yield('content')
+   
+
+    <footer class="ftco-footer">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 logo"><a href="#">Light <span>Store</span></a></h2>
+              <p>Chúng tôi cam kết mang đến cho Quý khách hàng những sản phẩm chính hãng, những mẫu mã mới nhất với chất lượng cao và giá cả hợp lý.</p>
+              <ul class="ftco-footer-social list-unstyled mt-2">
+                <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Tài khoản</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đăng ký</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đăng nhập</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Thông tin</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Về chúng tôi</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Sản Phẩm</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Liên hệ</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Tin tức</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Kết nối</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>FaceBook</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Git Hub</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Zalo</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Giải Đáp Thắc Mắc?</h2>
+                <div class="block-23 mb-3">
+                  <ul>
+                    <li><span class="icon fa fa-map marker"></span><span class="text">An Giang University.</span></li>
+                    <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+84 999 999 999</span></a></li>
+                    <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text">LightStore@student.agu.edu.vn</span></a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid px-0 py-5 bg-black">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <p>Copyrights &copy;  {{ date('Y') }} - bởi <a href="https://github.com/PThanhTram">Khang - Trâm - Trang</a></p>
-                </div>
-                <div class="col-lg-6 text-right col-md-12">
-                    <div class="social-icons">
-                        <ul>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
+              <div class="col-md-12">
+        
+                <p class="mb-0" style="color: rgba(255,255,255,.5);"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+      Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> -Bởi Khang - Trâm - Trang
+      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+              </div>
             </div>
         </div>
-    </div>
-    <!-- end copyright -->
+      </div>
+    </footer>
     
-    <!-- jquery -->
-    <script src="{{asset('public/assets/js/jquery-1.11.3.min.js')}}"></script>
-    <!-- bootstrap -->
-    <script src="{{asset('public/assets/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- count down -->
-    <script src="{{asset('public/assets/js/jquery.countdown.js')}}"></script>
-    <!-- isotope -->
-    <script src="{{asset('public/assets/js/jquery.isotope-3.0.6.min.js')}}"></script>
-    <!-- waypoints -->
-    <script src="{{asset('public/assets/js/waypoints.js')}}"></script>
-    <!-- owl carousel -->
-    <script src="{{asset('public/assets/js/owl.carousel.min.js')}}"></script>
-    <!-- magnific popup -->
-    <script src="{{asset('public/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <!-- mean menu -->
-    <script src="{{asset('public/assets/js/jquery.meanmenu.min.js')}}"></script>
-    <!-- sticker js -->
-    <script src="{{asset('public/assets/js/sticker.js')}}"></script>
-    <!-- main js -->
-    <script src="{{asset('public/assets/js/main.js')}}"></script>
+  
 
-</body>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{{asset('public/frontend/js/jquery.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery-migrate-3.0.1.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/popper.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.easing.1.3.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.stellar.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.animateNumber.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/scrollax.min.js')}}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{{asset('public/frontend/js/google-map.js')}}"></script>
+  <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    
+  </body>
 </html>

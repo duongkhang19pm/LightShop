@@ -26,11 +26,14 @@
             </div>
             <div class="card-body "id="table-hover-row">
                 <a href="{{route('nhanvien.sanpham.them')}}" class="btn btn-info mb-2" ><i class="fas fa-plus"></i> Thêm mới</a>
+                <a href="#nhap" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-upload"></i> Nhập từ Excel</a>
+                <a href="{{ route('nhanvien.sanpham.xuat') }}" class="btn btn-success mb-2"><i class="fas fa-download"></i> Xuất ra Excel</a>
                 <table class='table  table-hover' id="table1">
                     <thead>
                              <tr>
                                  <th width="5%">#</th>
                                  <th width="15%">Hình ảnh</th>
+                                 
                                  <th width="30%">Thông Tin Sản Phẩm</th>
                                  <th width="25%">Tên sản phẩm không dấu</th>           
                                  <th width="15%">Số Lượng</th>
@@ -38,11 +41,26 @@
                                  <th width="5%">Xóa</th>
                              </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                          @foreach($sanpham as $value)
                              <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td class="text-center"><img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}" height="70" width="100"></td>
+                                <td>{{ $sanpham->firstItem() + $loop->index }}</td>
+                                
+                                 <td class="text-center">
+                                  
+                                    @if(($value->hinhanh)->isEmpty())
+                                        <img src="{{env('APP_URL').'/public/images/noimage.png' }}" height="70" width="100"/>
+                                           
+                                    @else
+                                         @foreach($value->hinhanh as $image)
+                                                 
+                                                <img src="{{ $hinhanh_first[$image->id] }}" height="70" width="100"/>
+                                                 
+                                                 @break
+                                            @endforeach
+                                    @endif
+                                  
+                                </td>
                                 <td>
                                     Nhóm Sản Phẩm: {{ $value->NhomSanPham->tennhom }}<br/>
                                     Loại Sản Phẩm: {{ $value->LoaiSanPham->tenloai }}<br/>
@@ -71,10 +89,39 @@
                         
                     </tbody>
                 </table>
+                </div>
+                      <ul class="pagination justify-content-center mt-4">
+                       {{$sanpham->links()}}
+                     </ul>
+                  </div>
+                
             </div>
         </div>
 
     </section>
 </div>
+<form action="{{ route('nhanvien.sanpham.nhap') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="importModalLabel">Nhập từ Excel</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-0">
+                            <label for="file_excel" class="form-label">Chọn tập tin Excel</label>
+                            <input type="file" class="form-control" id="file_excel" name="file_excel" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Hủy bỏ</button>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-upload"></i> Nhập dữ liệu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 @endsection

@@ -5,329 +5,290 @@
 @endsection
 
 @section('content')
-   <!-- home page slider -->
-    <div class="homepage-slider">
-        <!-- single home slider -->
-        <div class="single-homepage-slider homepage-bg-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
-                        <div class="hero-text">
-                            <div class="hero-text-tablecell">
-                                <p class="subtitle">Hiện Đại - Chất Lượng</p>
-                                <h1>Sản phẩm và dịch vụ hoàn hảo nhất</h1>
-                                <div class="hero-btns">
-                                    <a href="shop.html" class="boxed-btn">Sản phẩm</a>
-                                    <a href="contact.html" class="bordered-btn">Liên hệ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   <div class="hero-wrap" style="background-image: url('{{asset('public/frontend/images/hero-bg-3.jpg')}}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-8 ftco-animate d-flex align-items-end">
+            <div class="text w-100 text-center">
+                <h1 class="mb-4"><span>Sản Phẩm - Dịch Vụ</span> Hoàn Hảo <span>Nhất</span>.</h1>
+                <p><a href="#" class="btn btn-primary py-2 px-4">Đặt Hàng Ngay</a> <a href="#" class="btn btn-white btn-outline-white py-2 px-4">Tìm Hiểu Thêm</a></p>
             </div>
+          </div>
         </div>
-        <!-- single home slider -->
-        <div class="single-homepage-slider homepage-bg-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1 text-center">
-                        <div class="hero-text">
-                            <div class="hero-text-tablecell">
-                                <p class="subtitle">Uy tín - Chất lượng</p>
-                                <h1>100% Chất lượng Á - Âu</h1>
-                                <div class="hero-btns">
-                                    <a href="shop.html" class="boxed-btn">Sản phẩm</a>
-                                    <a href="contact.html" class="bordered-btn">Liên hệ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- single home slider -->
-        <div class="single-homepage-slider homepage-bg-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1 text-right">
-                        <div class="hero-text">
-                            <div class="hero-text-tablecell">
-                                <p class="subtitle">Hỗ trợ - tư vấn</p>
-                                <h1>Phục vụ để khách hàng quay trở lại</h1>
-                                <div class="hero-btns">
-                                    <a href="shop.html" class="boxed-btn">Sản phẩm</a>
-                                    <a href="contact.html" class="bordered-btn">Liên hệ</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <!-- end home page slider -->
 
-    <!-- features list section -->
-    <div class="list-section pt-80 pb-80">
+    <section class="ftco-intro">
         <div class="container">
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="list-box d-flex align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-shipping-fast"></i>
+            <div class="row no-gutters">
+                <div class="col-md-4 d-flex">
+                    <div class="intro d-lg-flex w-100 ftco-animate">
+                        <div class="icon">
+                            <span class="flaticon-support"></span>
                         </div>
-                        <div class="content">
-                            <h3>Giao hàng miễn phí</h3>
-                            <p>Khi hơn hàng trên 100.000.000 VNĐ</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="list-box d-flex align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-phone-volume"></i>
-                        </div>
-                        <div class="content">
-                            <h3>Hỗ Trợ 24/7</h3>
-                            <p>Tư Vấn, Sữa Chữa, Lắp Đặt</p>
+                        <div class="text">
+                            <h2>Hỗ Trợ 24/7</h2>
+                            <p>Tư Vấn, Sữa Chữa, Lắp Đặt.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="list-box d-flex justify-content-start align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-sync"></i>
+                <div class="col-md-4 d-flex">
+                    <div class="intro color-1 d-lg-flex w-100 ftco-animate">
+                        <div class="icon">
+                            <span class="flaticon-cashback"></span>
                         </div>
-                        <div class="content">
-                            <h3>Trả Hàng</h3>
-                            <p>Đổi trả hàng trong vòng 7 ngày!</p>
+                        <div class="text">
+                            <h2>Trả Hàng</h2>
+                            <p>Đổi trả hàng trong vòng 7 ngày!.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- end features list section -->
-
-    <!-- product section -->
-    <div class="product-section mt-150 mb-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
-                    <div class="section-title"> 
-                        <h3><span class="orange-text">Sản Phẩm</span> Dịch Vụ</h3>
-                        <p>LightStore - tự hào là nhà phân phối độc quyền các sản phẩm cao cấp của các thương hiệu đến từ Italy, Spain: Bejorama, Copen Lamp, Sarri, Fede, Farbel, BC SanMichele...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                @foreach($sanpham as $value)
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="single-product-item">
-                        <div class="product-image">
-                            <a href="single-product.html"><img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}"  height="200" alt=""></a>
+                <div class="col-md-4 d-flex">
+                    <div class="intro color-2 d-lg-flex w-100 ftco-animate">
+                        <div class="icon">
+                            <span class="flaticon-free-delivery"></span>
                         </div>
-                        <h3 >{{$value->tensanpham}}</h3>
-                        <p class="product-price"> {{ number_format($value->dongia) }}đ </p>
-
-                        <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Đặt Hàng</a>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-info"></i> Chi Tiết</a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- end product section -->
-
-    <!-- cart banner section -->
-    <section class="cart-banner pt-100 pb-100">
-        <div class="container">
-            <div class="row clearfix">
-                <!--Image Column-->
-                <div class="image-column col-lg-6">
-                    <div class="image">
-                        <div class="price-box">
-                            <div class="inner-price">
-                                <span class="price">
-                                    <strong>30%</strong> <br> off per kg
-                                </span>
-                            </div>
+                        <div class="text">
+                            <h2>Giao hàng miễn phí</h2>
+                            <p>Đơn hàng trên 10.000.000 VNĐ.</p>
                         </div>
-                        <img src="assets/img/a.jpg" alt="">
                     </div>
-                </div>
-                <!--Content Column-->
-                <div class="content-column col-lg-6">
-                    <h3><span class="orange-text">Deal</span> of the month</h3>
-                    <h4>Hikan Strwaberry</h4>
-                    <div class="text">Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</div>
-                    <!--Countdown Timer-->
-                    <div class="time-counter"><div class="time-countdown clearfix" data-countdown="2020/2/01"><div class="counter-column"><div class="inner"><span class="count">00</span>Days</div></div> <div class="counter-column"><div class="inner"><span class="count">00</span>Hours</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Mins</div></div>  <div class="counter-column"><div class="inner"><span class="count">00</span>Secs</div></div></div></div>
-                    <a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end cart banner section -->
 
-    <!-- testimonail-section -->
-    <div class="testimonail-section mt-150 mb-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 text-center">
-                    <div class="testimonial-sliders">
-                        <div class="single-testimonial-slider">
-                            <div class="client-avater">
-                                <img src="assets/img/avaters/avatar1.png" alt="">
-                            </div>
-                            <div class="client-meta">
-                                <h3>Saira Hakim <span>Local shop owner</span></h3>
-                                <p class="testimonial-body">
-                                    " Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-                                </p>
-                                <div class="last-icon">
-                                    <i class="fas fa-quote-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-testimonial-slider">
-                            <div class="client-avater">
-                                <img src="assets/img/avaters/avatar2.png" alt="">
-                            </div>
-                            <div class="client-meta">
-                                <h3>David Niph <span>Local shop owner</span></h3>
-                                <p class="testimonial-body">
-                                    " Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-                                </p>
-                                <div class="last-icon">
-                                    <i class="fas fa-quote-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-testimonial-slider">
-                            <div class="client-avater">
-                                <img src="assets/img/avaters/avatar3.png" alt="">
-                            </div>
-                            <div class="client-meta">
-                                <h3>Jacob Sikim <span>Local shop owner</span></h3>
-                                <p class="testimonial-body">
-                                    " Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-                                </p>
-                                <div class="last-icon">
-                                    <i class="fas fa-quote-right"></i>
-                                </div>
-                            </div>
-                        </div>
+    <section class="ftco-section ftco-no-pb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 img img-3 d-flex justify-content-center align-items-center" style="background-image: url('{{asset('public/frontend/images/hero-bg.jpg')}}');">
+                    </div>
+                    <div class="col-md-6 wrap-about pl-md-5 ftco-animate py-5">
+              <div class="heading-section">
+                <span class="subheading">GIỚI THIỆU VỀ CHÚNG TÔI</span>
+                <h2 class="mb-4">Không Gian Mới</h2>
+
+                <p>LightStore - tự hào là nhà phân phối độc quyền các sản phẩm cao cấp của các thương hiệu đến từ Italy, Spain: Bejorama, Copen Lamp, Sarri, Fede, Farbel, BC SanMichele...... Chúng tôi cam kết mang đến cho Quý khách hàng những sản phẩm chính hãng, những mẫu mã mới nhất với chất lượng cao và giá cả hợp lý"</p>
+                <p>TẦM NHÌN: Công ty cổ phần Nhất Sang đầu tư các nguồn lực để trở thành doanh nghiệp dẫn đầu cung cấp các sản phẩm đèn trang trí, đèn chiếu sáng, đồ bày trí cao cấp tại Việt Nam.</p>
+                <p class="year">
+                    <strong class="number" data-number="100">0</strong>
+                    <span> Năm Kinh Doanh</span>
+                </p>
+              </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- end testimonail-section -->
-    
-    <!-- advertisement section -->
-    <div class="abt-section mb-150">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="abt-bg">
-                        <a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="abt-text">
-                        <p class="top-sub">Since Year 1999</p>
-                        <h2>We are <span class="orange-text">Fruitkha</span></h2>
-                        <p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
-                        <a href="about.html" class="boxed-btn mt-4">know more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end advertisement section -->
-    
-    <!-- shop banner -->
-    <section class="shop-banner">
-        <div class="container">
-            <h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
-            <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
-            <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
-        </div>
-    </section>
-    <!-- end shop banner -->
+        </section>
 
-    <!-- latest news -->
-    <div class="latest-news pt-150 pb-150">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
-                    <div class="section-title"> 
-                        <h3><span class="orange-text">Tin</span> Tức</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                @foreach($baiviet as $value)
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-news">
-                        <a href="single-news.html"><img src="{{$bvimage[$value->id]}}"></a>
-                        <div class="news-text-box">
-                            <h3><a href="single-news.html">{{ $value->tieude }}</a></h3>
-                            <p class="blog-meta">
-                                <span class="author"><i class="fas fa-user"></i>{{$value->taikhoan->name}}</span>
-                                <span class="date"><i class="fas fa-calendar"></i>{{ $value->ngaydang}}</span>
-                            </p>
-                            <p class="excerpt">{{ $value->tomtat }}</p>
-                            <a href="single-news.html" class="read-more-btn">Xem Thêm<i class="fas fa-angle-right"></i></a>
+        <section class="ftco-section ftco-no-pb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url('{{asset('public/frontend/images/den-bg-1.jpg')}}');"></div>
+                            <h3>Đèn Chùm</h3>
                         </div>
                     </div>
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url('{{asset('public/frontend/images/den-bg-2.jpg')}}');"></div>
+                            <h3>Đèn Mâm</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url('{{asset('public/frontend/images/den-bg-3.jpg')}}');"></div>
+                            <h3>Đèn Hiện Đại</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url('{{asset('public/frontend/images/den-bg-4.jpg')}}');"></div>
+                            <h3>Đèn Bàn</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url('{{asset('public/frontend/images/den-bg-5.jpg')}}');"></div>
+                            <h3>Đèn Tường</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 ">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url('{{asset('public/frontend/images/den-bg-6.jpg')}}');"></div>
+                            <h3>Đèn Thả</h3>
+                        </div>
+                    </div>
+
                 </div>
-                @endforeach
+            </div>
+        </section>
+
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Dịch vụ của chúng tôi</span>
+            <h2>Sản Phẩm</h2>
+          </div>
+        </div>
+                <div class="row">
                 
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <a href="news.html" class="boxed-btn">More News</a>
+                    @foreach($sanpham as $value)
+                    <div class="col-md-3 d-flex">
+                        <div class="product ftco-animate">
+                            @foreach($value->hinhanh as $image)
+                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{ $hinhanh_first[$image->id] }}');">
+                                <div class="desc">
+                                    <p class="meta-prod d-flex">
+                                        <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                        
+                                        <a href="{{ route('frontend.sanpham_chitiet', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                    </p>
+                                </div>
+                            </div>
+                            @break
+                                    @endforeach
+                            <div class="text text-center">
+                                <h2>{{$value->tensanpham}}</h2>
+                                <p class="mb-0"><span class="price"> {{ number_format($value->dongia) }} <sup>đ</sup> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- end latest news -->
-
-    <!-- logo carousel -->
-    <div class="logo-carousel-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo-carousel-inner">
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/1.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/2.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/3.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/4.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/5.png" alt="">
-                        </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <a href="product.html" class="btn btn-primary d-block">Xem Nhiều Hơn <span class="fa fa-long-arrow-right"></span></a>
                     </div>
                 </div>
             </div>
+        </section>
+  
+    <section class="ftco-section testimony-section img" style="background-image: url('{{asset('public/frontend/images/hero-bg-2.jpg')}}');">
+        <div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <span class="subheading">Góp Ý Từ Khách Hàng</span>
+            <h2 class="mb-3">Khách hàng hài lòng</h2>
+          </div>
         </div>
-    </div>
-    <!-- end logo carousel -->
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Mẫu Mã Đa Dạng, Phong Phú Độ Sáng Của Đèn Chùm Ốp Trần Hoàn Hảo Giúp Tiết Kiệm Điện Năng Tối Đa.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url('{{asset('public/frontend/images/person-1.jpg')}}')"></div>
+                        <div class="pl-3">
+                            <p class="name">Kim JiSoo</p>
+                            <span class="position">Khách hàng tiềm năng</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Mẫu Mã Đa Dạng, Phong Phú Độ Sáng Của Đèn Chùm Ốp Trần Hoàn Hảo Giúp Tiết Kiệm Điện Năng Tối Đa.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url('{{asset('public/frontend/images/person-2.jpg')}}')"></div>
+                        <div class="pl-3">
+                            <p class="name">LaLisa</p>
+                            <span class="position">Khách hàng tiềm năng</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Mẫu Mã Đa Dạng, Phong Phú Độ Sáng Của Đèn Chùm Ốp Trần Hoàn Hảo Giúp Tiết Kiệm Điện Năng Tối Đa.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url('{{asset('public/frontend/images/person-3.jpg')}}')"></div>
+                        <div class="pl-3">
+                            <p class="name">Rose'</p>
+                            <span class="position">Khách hàng tiềm năng</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Mẫu Mã Đa Dạng, Phong Phú Độ Sáng Của Đèn Chùm Ốp Trần Hoàn Hảo Giúp Tiết Kiệm Điện Năng Tối Đa.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url('{{asset('public/frontend/images/person-4.jpg')}}')"></div>
+                        <div class="pl-3">
+                            <p class="name">Kim Jennie</p>
+                            <span class="position">Khách hàng tiềm năng</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                    <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                  <div class="text">
+                    <p class="mb-4">Mẫu Mã Đa Dạng, Phong Phú Độ Sáng Của Đèn Chùm Ốp Trần Hoàn Hảo Giúp Tiết Kiệm Điện Năng Tối Đa.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="user-img" style="background-image: url('{{asset('public/frontend/images/person-2.jpg')}}')"></div>
+                        <div class="pl-3">
+                            <p class="name">LaLisa</p>
+                            <span class="position">Khách hàng tiềm năng</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+        
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <span class="subheading">Tin Tức</span>
+            <h2>Tin Tức Mới Nhất</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+            @foreach($baiviet as $value)
+          <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
+            <div class="blog-entry d-flex">
+                <a href="blog-single.html" class="block-20 img " style="background-image: url('{{asset('public/frontend/images/image_3.jpg')}}');">
+              </a>
+              <div class="text p-4 bg-light">
+                <div class="meta">
+                    <p><span class="fa fa-calendar"></span>{{ $value->ngaydang}}</p>
+                </div>
+                <h3 class="heading mb-3"><a href="#">{{ $value->tieude }}</a></h3>
+                <p>{{ $value->tomtat }}</p>
+                <a href="#" class="btn-custom">Xem Thêm <span class="fa fa-long-arrow-right"></span></a>
+
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+    </section>  
 @endsection

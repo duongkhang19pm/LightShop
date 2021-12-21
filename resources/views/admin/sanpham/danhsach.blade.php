@@ -33,6 +33,7 @@
                              <tr>
                                  <th width="5%">#</th>
                                  <th width="15%">Hình ảnh</th>
+                                 
                                  <th width="30%">Thông Tin Sản Phẩm</th>
                                  <th width="25%">Tên sản phẩm không dấu</th>           
                                  <th width="15%">Số Lượng</th>
@@ -44,7 +45,22 @@
                          @foreach($sanpham as $value)
                              <tr>
                                 <td>{{ $sanpham->firstItem() + $loop->index }}</td>
-                                <td class="text-center"><img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}" height="70" width="100"></td>
+                                
+                                 <td class="text-center">
+                                  
+                                    @if(($value->hinhanh)->isEmpty())
+                                        <img src="{{env('APP_URL').'/public/images/noimage.png' }}" height="70" width="100"/>
+                                           
+                                    @else
+                                         @foreach($value->hinhanh as $image)
+                                                 
+                                                <img src="{{ $hinhanh_first[$image->id] }}" height="70" width="100"/>
+                                                 
+                                                 @break
+                                            @endforeach
+                                    @endif
+                                  
+                                </td>
                                 <td>
                                     Nhóm Sản Phẩm: {{ $value->NhomSanPham->tennhom }}<br/>
                                     Loại Sản Phẩm: {{ $value->LoaiSanPham->tenloai }}<br/>

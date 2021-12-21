@@ -623,6 +623,7 @@ class ComposerStaticInit3247019d70d7e461b6ddfe36d873e5d0
         'App\\Models\\ChuDe' => __DIR__ . '/../..' . '/app/Models/ChuDe.php',
         'App\\Models\\DonHang' => __DIR__ . '/../..' . '/app/Models/DonHang.php',
         'App\\Models\\DonHang_ChiTiet' => __DIR__ . '/../..' . '/app/Models/DonHang_ChiTiet.php',
+        'App\\Models\\HinhAnh' => __DIR__ . '/../..' . '/app/Models/HinhAnh.php',
         'App\\Models\\LienHe' => __DIR__ . '/../..' . '/app/Models/LienHe.php',
         'App\\Models\\LoaiSanPham' => __DIR__ . '/../..' . '/app/Models/LoaiSanPham.php',
         'App\\Models\\NhomSanPham' => __DIR__ . '/../..' . '/app/Models/NhomSanPham.php',

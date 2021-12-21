@@ -117,13 +117,18 @@
                                  </div>
                                  
                                   <div class="mb-3">
-                                     <label class="form-label" for="hinhanh">Hình ảnh </label>
-                                     @if(!empty($sanpham->hinhanh))
-                                         <img class="d-block rounded" src="{{ env('APP_URL') . '/storage/app/' . $sanpham->hinhanh }}" width="100" />
-                                         <span class="d-block small text-danger">Bỏ trống nếu muốn giữ nguyên ảnh cũ.</span>
-                                     @endif
-                                    <input type="file" class="form-control @error('hinhanh') is-invalid @enderror" id="hinhanh" name="hinhanh" value="{{ $sanpham->hinhanh }}" />
-                                     @error('hinhanh')
+                                     @foreach($sanpham->HinhAnh as $value)
+                                            @if(!empty($value->thumuc))
+                                                 <img src="{{env('APP_URL').'/storage/app/'.$value->thumuc.'/'.$value->hinhanh}}" height="70" width="100" >
+                                            @endif
+                                             
+                                        @endforeach
+                                         
+                                        <span class="d-block small text-danger">Bỏ trống nếu muốn giữ nguyên ảnh cũ.</span>
+                                    
+                                      <input type="file" name="anhbia[]" multiple class="form-control @error('anhbia') is-invalid @enderror" accept="anhbia/*">
+                                     
+                                     @error('anhbia')
                                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                      @enderror
                                  </div>

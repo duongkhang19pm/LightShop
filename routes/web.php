@@ -26,6 +26,26 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
 Route::get('/403', [HomeController::class, 'get403'])->name('403');
 
+// Trang sản phẩm
+//Route::get('/san-pham', [HomeController::class, 'getSanPham'])->name('frontend.sanpham');
+//Route::get('/san-pham/{tenloai_slug}', [HomeController::class, 'getSanPham'])->name('frontend.sanpham.danhmuc');
+Route::get('/frontend/sanpham_chitiet/{tensanpham_slug}', [HomeController::class, 'getSanPham_ChiTiet'])->name('frontend.sanpham_chitiet');
+
+// Trang giỏ hàng
+Route::get('/gio-hang', [HomeController::class, 'getGioHang'])->name('frontend.giohang');
+Route::get('/gio-hang/them/{tensanpham_slug}', [HomeController::class, 'getGioHang_Them'])->name('frontend.giohang.them');
+Route::get('/gio-hang/xoa', [HomeController::class, 'getGioHang_XoaTatCa'])->name('frontend.giohang.xoatatca');
+Route::get('/gio-hang/xoa/{row_id}', [HomeController::class, 'getGioHang_Xoa'])->name('frontend.giohang.xoa');
+Route::get('/gio-hang/giam/{row_id}', [HomeController::class, 'getGioHang_Giam'])->name('frontend.giohang.giam');
+Route::get('/gio-hang/tang/{row_id}', [HomeController::class, 'getGioHang_Tang'])->name('frontend.giohang.tang');
+
+// Trang đặt hàng
+Route::get('/dat-hang', [HomeController::class, 'getDatHang'])->name('frontend.dathang');
+Route::post('/dat-hang', [HomeController::class, 'postDatHang'])->name('frontend.dathang');
+Route::get('/dat-hang-thanh-cong', [HomeController::class, 'getDatHangThanhCong'])->name('frontend.dathangthanhcong');
+
+// Liên hệ
+Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('frontend.lienhe');
 
 
 // Trang quản trị

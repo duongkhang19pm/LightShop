@@ -19,7 +19,7 @@ class SanPhamImport implements ToModel, WithHeadingRow
             'tensanpham_slug' => $row['tensanpham_slug'],
             'soluong' => $row['soluong'],
             'dongia' => $row['dongia'],
-            'hinhanh' => $row['hinhanh'],
+            
          ]);
      }
 

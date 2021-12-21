@@ -52,6 +52,7 @@ return array(
     'App\\Models\\ChuDe' => $baseDir . '/app/Models/ChuDe.php',
     'App\\Models\\DonHang' => $baseDir . '/app/Models/DonHang.php',
     'App\\Models\\DonHang_ChiTiet' => $baseDir . '/app/Models/DonHang_ChiTiet.php',
+    'App\\Models\\HinhAnh' => $baseDir . '/app/Models/HinhAnh.php',
     'App\\Models\\LienHe' => $baseDir . '/app/Models/LienHe.php',
     'App\\Models\\LoaiSanPham' => $baseDir . '/app/Models/LoaiSanPham.php',
     'App\\Models\\NhomSanPham' => $baseDir . '/app/Models/NhomSanPham.php',
