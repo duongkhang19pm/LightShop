@@ -139,8 +139,7 @@
                     @foreach($sanpham as $value)
                     <div class="col-md-3 d-flex">
                         <div class="product ftco-animate">
-                            @foreach($value->hinhanh as $image)
-                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{ $hinhanh_first[$image->id] }}');">
+                         <div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{env('APP_URL').'/storage/app/'.$value->hinhanh}}');">
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
                                         <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
@@ -149,8 +148,6 @@
                                     </p>
                                 </div>
                             </div>
-                            @break
-                                    @endforeach
                             <div class="text text-center">
                                 <h2>{{$value->tensanpham}}</h2>
                                 <p class="mb-0"><span class="price"> {{ number_format($value->dongia) }} <sup>đ</sup> </span></p>

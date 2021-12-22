@@ -22,7 +22,7 @@ class SanPham extends Model
          'tensanpham_slug',
          'soluong',
          'dongia',
-        // 'hinhanh',
+         'hinhanh',
          'motasanpham',
      ];
     public function NhomSanPham()
@@ -51,8 +51,5 @@ class SanPham extends Model
     {
     return $this->hasMany(DonHang_ChiTiet::class, 'sanpham_id', 'id');
     }
-    public function HinhAnh()
-    {
-    return $this->hasMany(HinhAnh::class, 'sanpham_id', 'id');
-    }
+    
 }

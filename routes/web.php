@@ -46,8 +46,8 @@ Route::get('/dat-hang-thanh-cong', [HomeController::class, 'getDatHangThanhCong'
 
 // Liên hệ
 Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('frontend.lienhe');
-
-
+//Đăng nhập
+Route::get('/dang-nhap', [HomeController::class, 'getDangNhap'])->name('frontend.dangnhap');
 // Trang quản trị
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function() {
     // Trang chủ quản trị
@@ -134,6 +134,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function() {
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('sanpham.xuat');
     Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap'])->name('sanpham.nhap');
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('sanpham.xuat');
+    Route::get('/sanpham/hienthi/{id}', [SanPhamController::class, 'getHienThi'])->name('sanpham.hienthi');
 
     // Quản lý Đơn hàng
     Route::get('/donhang', [DonHangController::class, 'getDanhSach'])->name('donhang');
@@ -142,7 +143,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function() {
     Route::get('/donhang/sua/{id}', [DonHangController::class, 'getSua'])->name('donhang.sua');
     Route::post('/donhang/sua/{id}', [DonHangController::class, 'postSua'])->name('donhang.sua');
     Route::get('/donhang/xoa/{id}', [DonHangController::class, 'getXoa'])->name('donhang.xoa');
-
+    Route::get('/donhang/tinhtrang/{id}/{tinhtrang_id}', [DonHangController::class, 'getTinhTrang'])->name('donhang.tinhtrang');
     // Quản lý Đơn hàng chi tiết
     Route::get('/donhang/chitiet', [DonHangChiTietController::class, 'getDanhSach'])->name('donhang.chitiet');
     Route::get('/donhang/chitiet/sua/{id}', [DonHangChiTietController::class, 'getSua'])->name('donhang.chitiet.sua');
@@ -185,6 +186,8 @@ Route::prefix('nhanvien')->name('nhanvien.')->middleware('nhanvien')->group(func
     Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa_NhanVien'])->name('sanpham.xoa');
     Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap_NhanVien'])->name('sanpham.nhap');
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat_NhanVien'])->name('sanpham.xuat');
+    Route::get('/sanpham/hienthi/{id}', [SanPhamController::class, 'getHienThi_NhanVien'])->name('sanpham.hienthi');
+
 
     // Quản lý Bài Viết
     Route::get('/baiviet', [BaiVietController::class, 'getDanhSach_NhanVien'])->name('baiviet');

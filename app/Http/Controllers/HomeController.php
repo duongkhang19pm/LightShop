@@ -7,9 +7,12 @@ use App\Models\SanPham;
 use App\Models\ThuongHieu;
 use App\Models\BaiViet;
 use App\Models\HinhAnh;
+use App\Models\DonHang;
+use App\Models\DonHang_ChiTiet;
 use Str;
 use Storage;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Auth;
 class HomeController extends Controller
 {
     
@@ -25,24 +28,7 @@ class HomeController extends Controller
         $thuonghieu = ThuongHieu::all();
         $sanpham = SanPham::Where('hienthi',1)->paginate(20);
         $baiviet = BaiViet::Where('kiemduyet',1)->paginate(20);
-        $no_image = env('APP_URL').'/public/images/noimage.png';
-        $hinhanh = HinhAnh::all();
-        $hinhanh_first = array();
-        foreach($hinhanh as $value)
-        {
-            $dir = 'storage/app/' . $value->thumuc . '/';
-            if(file_exists($dir))
-            {
-                $files = scandir($dir);
-                if(isset($files[3]))
-                    $hinhanh_first[$value->id] = config('app.url') . '/'. $dir . $files[3];
-                else
-                    $hinhanh_first[$value->id] = $no_image;
-            }
-            else
-                $hinhanh_first[$value->id] = $no_image;
-        }
-        return view('frontend.index', compact('sanpham','hinhanh','hinhanh_first','thuonghieu','baiviet'));
+        return view('frontend.index', compact('sanpham','baiviet'));
     }
 
     
@@ -60,47 +46,15 @@ class HomeController extends Controller
     public function getGioHang_Them($tensanpham_slug)
     {
         $sanpham = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
-        $no_image = env('APP_URL').'/public/images/noimage.png';
-        $hinhanh = HinhAnh::all();
-        $hinhanh_first = array();
-        foreach($sanpham->hinhanh as $value)
-        {
-            $dir = 'storage/app/' . $value->thumuc . '/';
-            if(file_exists($dir))
-            {
-                $files = scandir($dir);
-                if(isset($files[3]))
-                {
-                    $hinhanh_first[$value->id] = config('app.url') . '/'. $dir . $files[3];
-                    $anh=$hinhanh_first[$value->id];
-                  return $anh;
-                }
-                    
-                else
-
-                  {
-                   $hinhanh_first[$value->id] = $no_image;
-                   $anh=$hinhanh_first[$value->id];
-                    return $anh; 
-                }  
-            }
-            else
-                 {
-                   $hinhanh_first[$value->id] = $no_image;
-                   $anh=$hinhanh_first[$value->id];
-                    return $anh; 
-                }
-
-        } 
             Cart::add([
-                'id' => $sanpham->id,
-                'name' => $sanpham->tensanpham,
-                'price' => $sanpham->dongia,
-                'qty' => 1,
-                'weight' => 0,
-                'options' => [
-                'image' =>  $anh
-                    ]
+                    'id' => $sanpham->id,
+                    'name' => $sanpham->tensanpham,
+                    'price' => $sanpham->dongia,
+                    'qty' => 1,
+                    'weight' => 0,
+                    'options' => [
+                    'image' => $sanpham->hinhanh
+                ]
                 ]);
 
         return redirect()->route('frontend.giohang');
@@ -142,7 +96,16 @@ class HomeController extends Controller
 
     public function getDatHang()
     {
-        return view('frontend.dathang');
+        //Nếu đã đăng nhập thì thanh toán
+        if(Auth::check())
+        {
+            return view('frontend.dathang');
+        }
+        else
+        {
+             return redirect()->route('login');
+        }
+       
     }
 
     public function postDatHang(Request $request)
@@ -154,7 +117,8 @@ class HomeController extends Controller
 
         // Lưu vào đơn hàng
         $dh = new DonHang();
-        $dh->nguoidung_id = Auth::user()->id;
+        $dh->taikhoan_id = Auth::user()->id;
+         $dh->tinhtrang_id = 1; 
         $dh->diachigiaohang = $request->diachigiaohang;
         $dh->dienthoaigiaohang = $request->dienthoaigiaohang;
         $dh->save();
@@ -166,7 +130,7 @@ class HomeController extends Controller
             $ct->donhang_id = $dh->id;
             $ct->sanpham_id = $value->id;
             $ct->soluongban = $value->qty;
-            $ct->dongiaban = $value->price;
+            $ct->dongiaban = $value->total;
             $ct->save();
         }
 
@@ -195,6 +159,14 @@ class HomeController extends Controller
          return view('frontend.sanpham_chitiet',compact('a'));
          
      }
+     public function getDangNhap()
+    {
+        return view('frontend.dangnhap');
+    }
+    public function getDangKy()
+    {
+        return view('frontend.dangky');
+    }
 
 
 }

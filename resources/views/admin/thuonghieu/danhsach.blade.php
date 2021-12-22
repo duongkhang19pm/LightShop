@@ -43,7 +43,14 @@
                          @foreach($thuonghieu as $value)
                              <tr class="text-center">
                                  <td>{{ $loop->iteration }}</td>
-                                  <td class="text-center"><img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}" height="70" width="100" class="img-thumbnail"></td>
+                                  <td class="text-center">
+                                     @if(($value->hinhanh)==null)
+                                        <img src="{{env('APP_URL').'/public/images/noimage.png' }}" height="70" width="100"/>
+                                    
+                                     @else
+                                        <img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}" height="70" width="100" class="img-thumbnail">
+                                     @endif
+                                </td>
                                  <td>{{ $value->tenthuonghieu }}</td>
                                  <td>{{ $value->tenthuonghieu_slug }}</td>
                                  <td class="align-middle text-right">

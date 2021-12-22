@@ -37,6 +37,7 @@
                                  <th width="30%">Thông Tin Sản Phẩm</th>
                                  <th width="25%">Tên sản phẩm không dấu</th>           
                                  <th width="15%">Số Lượng</th>
+                                  <th width="5%">Hiển Thị</th>
                                  <th width="5%">Sửa</th>
                                  <th width="5%">Xóa</th>
                              </tr>
@@ -45,21 +46,13 @@
                          @foreach($sanpham as $value)
                              <tr>
                                 <td>{{ $sanpham->firstItem() + $loop->index }}</td>
-                                
-                                 <td class="text-center">
-                                  
-                                    @if(($value->hinhanh)->isEmpty())
+                                <td class="text-center">
+                                     @if(($value->hinhanh)==null)
                                         <img src="{{env('APP_URL').'/public/images/noimage.png' }}" height="70" width="100"/>
-                                           
-                                    @else
-                                         @foreach($value->hinhanh as $image)
-                                                 
-                                                <img src="{{ $hinhanh_first[$image->id] }}" height="70" width="100"/>
-                                                 
-                                                 @break
-                                            @endforeach
-                                    @endif
-                                  
+                                    
+                                     @else
+                                        <img src="{{env('APP_URL').'/storage/app/'.$value->hinhanh}}" height="70" width="100" class="img-thumbnail">
+                                     @endif
                                 </td>
                                 <td>
                                     Nhóm Sản Phẩm: {{ $value->NhomSanPham->tennhom }}<br/>
@@ -72,6 +65,13 @@
                                 </td>
                                 <td>{{ $value->tensanpham_slug }}</td>
                                 <td  class="text-end">{{ $value->soluong }}</td>
+                                <td class="text-center">
+                                @if($value->hienthi == 1)
+                                    <a href="{{ route('admin.sanpham.hienthi', ['id' => $value->id]) }}"><i class="fas fa-check-circle" title="Đã Duyệt"></i></a>
+                                @else
+                                    <a href="{{ route('admin.sanpham.hienthi', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger" title="Chưa Duyệt"></i></a>
+                                @endif
+                               </td>
                                 <td class="align-middle text-right">
                               <a href="{{route('nhanvien.sanpham.sua', ['id' => $value->id])}}" class="btn btn-sm btn-secondary">
                                 <i class="fa fa-pencil-alt"></i>
@@ -100,6 +100,7 @@
 
     </section>
 </div>
+
 <form action="{{ route('nhanvien.sanpham.nhap') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">

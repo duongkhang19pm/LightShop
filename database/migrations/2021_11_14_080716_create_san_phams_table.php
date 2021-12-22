@@ -24,7 +24,7 @@ class CreateSanPhamsTable extends Migration
             $table->string('tensanpham_slug');
             $table->integer('soluong');
             $table->double('dongia');
-           // $table->string('hinhanh')->nullable();
+            $table->string('hinhanh')->nullable();
             $table->text('motasanpham')->nullable();
             $table->unsignedTinyInteger('hienthi')->default(1);
             $table->timestamp('created_at')->useCurrent();

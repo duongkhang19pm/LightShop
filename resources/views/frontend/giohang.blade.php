@@ -37,7 +37,7 @@
 						    <tr class="alert" role="alert">
 
 						    	<td>
-						    		<div class="img" style="background-image: url('{{$value->options->image}}');"></div>
+						    		<div class="img" style="background-image: url('{{env('APP_URL').'/storage/app/'.$value->options->image}}');"></div>
 						    	</td>
 						        <td>{{ $value->name }} </td>
 						        <td>{{ number_format($value->price) }}<sup>đ</sup></td>

@@ -20,6 +20,7 @@ class SanPhamExport implements FromCollection, WithHeadings, WithMapping
             'tensanpham_slug',
             'soluong',
             'dongia',
+            'hinhanh',
             
         ];
     }
@@ -36,6 +37,7 @@ class SanPhamExport implements FromCollection, WithHeadings, WithMapping
         $row->tensanpham_slug,
         $row->soluong,
         $row->dongia,
+        $row->hinhanh,
        
     ];
     }   

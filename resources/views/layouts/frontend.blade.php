@@ -45,7 +45,7 @@
                       @guest
                         @if (Route::has('login'))
                         <p class="mb-0">
-                        <a href="{{ route('login') }}">Đăng nhập</a></p>
+                        <a href="{{ route('frontend.dangnhap') }}">Đăng nhập</a></p>
                         @endif
                       @else
                         <p class="mb-0">

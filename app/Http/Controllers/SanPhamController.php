@@ -9,7 +9,6 @@ use App\Models\LoaiSanPham;
 use App\Models\ThuongHieu;
 use App\Models\XuatXu;
 use App\Models\ChatLieu;
-use App\Models\HinhAnh;
 use Str;
 use File;
 use Storage;
@@ -21,24 +20,7 @@ class SanPhamController extends Controller
     public function getDanhSach()
     {
         $sanpham = SanPham::paginate(20);
-        $no_image = env('APP_URL').'/public/images/noimage.png';
-        $hinhanh = HinhAnh::all();
-        $hinhanh_first = array();
-        foreach($hinhanh as $value)
-        {
-            $dir = 'storage/app/' . $value->thumuc . '/';
-            if(file_exists($dir))
-            {
-                $files = scandir($dir);
-                if(isset($files[3]))
-                    $hinhanh_first[$value->id] = config('app.url') . '/'. $dir . $files[3];
-                else
-                    $hinhanh_first[$value->id] = $no_image;
-            }
-            else
-                $hinhanh_first[$value->id] = $no_image;
-        }
-        return view('admin.sanpham.danhsach',compact('sanpham','hinhanh','hinhanh_first'));
+        return view('admin.sanpham.danhsach',compact('sanpham'));
     }
     public function getThem()
     {
@@ -65,9 +47,24 @@ class SanPhamController extends Controller
             'tensanpham'=>['required','string','max:191','unique:sanpham'],
             'soluong'=>['required','numeric'],
             'dongia'=>['required','numeric'],
-            'hinhanh' => ['required'],
-            //'anhbia'=>['required'],
+            'hinhanh' => ['nullable','image','max:1024'],
         ]);
+      // Kiểm tra tập tin rỗng hay không?
+        $path = '';
+        if($request->hasFile('hinhanh'))
+        {
+            // Tạo thư mục nếu chưa có
+            $lsp = LoaiSanPham::find($request->loaisanpham_id);
+            File::isDirectory($lsp->tenloai_slug) or Storage::makeDirectory($lsp->tenloai_slug, 0775);
+            
+            // Xác định tên tập tin
+            $extension = $request->file('hinhanh')->extension();
+            $filename = Str::slug($request->tensanpham, '-') . '.' . $extension;
+            
+            // Upload vào thư mục và trả về đường dẫn
+            $path = Storage::putFileAs($lsp->tenloai_slug, $request->file('hinhanh'), $filename);
+        }
+        
         $orm = new SanPham();
         $orm->nhomsanpham_id = $request->nhomsanpham_id;
         $orm->loaisanpham_id = $request->loaisanpham_id;
@@ -78,25 +75,9 @@ class SanPhamController extends Controller
         $orm->tensanpham_slug = Str::slug($request->tensanpham, '-');
         $orm->soluong = $request->soluong;
         $orm->dongia = $request->dongia;
-
-        
-        //if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
+        if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
         $orm->motasanpham = $request->motasanpham;
         $orm->save();
-
-         if ($request->hasfile('hinhanh')) {
-            $hinhanh = $request->file('hinhanh');
-
-            foreach($hinhanh as $image) {
-                $name = $image->getClientOriginalName();
-                $path = $image->storeAs($orm->tensanpham_slug, $name, 'public');
-                $anh = new HinhAnh();
-                $anh->sanpham_id = $orm->id;
-                $anh->hinhanh = $name;
-                $anh->thumuc = 'public/'.$orm->tensanpham_slug;
-                $anh->save();
-            }
-         }
         return redirect()->route('admin.sanpham');
 
     }
@@ -121,9 +102,27 @@ class SanPhamController extends Controller
             'tensanpham'=>['required','string','max:191','unique:sanpham,tensanpham,'.$id],
             'soluong'=>['required','numeric'],
             'dongia'=>['required','numeric'],
-           'anhbia' => ['required']
+            'hinhanh' => ['nullable','image','max:1024'],
         ]);
-  
+        $path = '';
+        if($request->hasFile('hinhanh'))
+        {
+
+            // Xóa tập tin cũ
+            $sp = SanPham::find($id);
+            Storage::delete($sp->hinhanh);
+
+            // Tạo thư mục nếu chưa có
+            $lsp = LoaiSanPham::find($request->loaisanpham_id);
+            File::isDirectory($lsp->tenloai_slug) or Storage::makeDirectory($lsp->tenloai_slug, 0775);
+            
+            // Xác định tên tập tin
+            $extension = $request->file('hinhanh')->extension();
+            $filename = Str::slug($request->tensanpham, '-') . '.' . $extension;
+            
+            // Upload vào thư mục và trả về đường dẫn
+            $path = Storage::putFileAs($lsp->tenloai_slug, $request->file('hinhanh'), $filename);
+        }
         $orm = SanPham::find($id);
         $orm->nhomsanpham_id = $request->nhomsanpham_id;
         $orm->loaisanpham_id = $request->loaisanpham_id;
@@ -134,68 +133,36 @@ class SanPhamController extends Controller
         $orm->tensanpham_slug = Str::slug($request->tensanpham, '-');
         $orm->soluong = $request->soluong;
         $orm->dongia = $request->dongia;
-
-        //if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
+        if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
         $orm->motasanpham = $request->motasanpham;
         $orm->save();
-
-
-        $sanphamid= $request->id;
-        
-        if ($request->hasfile('anhbia')) {
-            $anhbia = $request->file('anhbia');
-            $hinhanh = HinhAnh::where('sanpham_id',$orm->id)->delete();
-         
-           
-            Storage::deleteDirectory('public/'.$orm->tensanpham_slug);
-            foreach($anhbia as $image) {
-                $name = $image->getClientOriginalName();
-                $path = $image->storeAs($orm->tensanpham_slug, $name, 'public');
-                $anh = new HinhAnh();
-                $anh->sanpham_id = $sanphamid;
-                $anh->hinhanh = $name;
-                $anh->thumuc =  'public/'.$orm->tensanpham_slug;
-                $anh->save();
-            }
-         }
         return redirect()->route('admin.sanpham');
 
     }
     public function getXoa($id)
     {
-        $orm=SanPham::find($id);
-        $hinhanh = HinhAnh::where('sanpham_id',$orm->id)->delete();
-         
-           
-            Storage::deleteDirectory('public/'.$orm->tensanpham_slug);
+        $orm = SanPham::find($id);
         $orm->delete();
-        //Storage::delete($orm->hinhanh);
+        
+        // Xóa tập tin khi xóa sản phẩm
+        Storage::delete($orm->hinhanh);
+        
         return redirect()->route('admin.sanpham');
     }
 
+    public function getHienThi($id)
+    {
+        $orm = SanPham::find($id);
+        $orm->hienthi= 1 - $orm->hienthi;
+        $orm->save();
+        return redirect()->route('admin.sanpham');
+    }
 
 
     public function getDanhSach_NhanVien()
     {
         $sanpham = SanPham::paginate(20);
-        $no_image = env('APP_URL').'/public/images/noimage.png';
-        $hinhanh = HinhAnh::all();
-        $hinhanh_first = array();
-        foreach($hinhanh as $value)
-        {
-            $dir = 'storage/app/' . $value->thumuc . '/';
-            if(file_exists($dir))
-            {
-                $files = scandir($dir);
-                if(isset($files[3]))
-                    $hinhanh_first[$value->id] = config('app.url') . '/'. $dir . $files[3];
-                else
-                    $hinhanh_first[$value->id] = $no_image;
-            }
-            else
-                $hinhanh_first[$value->id] = $no_image;
-        }
-        return view('nhanvien.sanpham.danhsach',compact('sanpham','hinhanh','hinhanh_first'));
+        return view('nhanvien.sanpham.danhsach',compact('sanpham'));
     }
     public function getThem_NhanVien()
     {
@@ -222,7 +189,22 @@ class SanPhamController extends Controller
             'tensanpham'=>['required','string','max:191','unique:sanpham'],
             'soluong'=>['required','numeric'],
             'dongia'=>['required','numeric'],
+             'hinhanh' => ['nullable','image','max:1024'],
         ]);
+          $path = '';
+        if($request->hasFile('hinhanh'))
+        {
+            // Tạo thư mục nếu chưa có
+            $lsp = LoaiSanPham::find($request->loaisanpham_id);
+            File::isDirectory($lsp->tenloai_slug) or Storage::makeDirectory($lsp->tenloai_slug, 0775);
+            
+            // Xác định tên tập tin
+            $extension = $request->file('hinhanh')->extension();
+            $filename = Str::slug($request->tensanpham, '-') . '.' . $extension;
+            
+            // Upload vào thư mục và trả về đường dẫn
+            $path = Storage::putFileAs($lsp->tenloai_slug, $request->file('hinhanh'), $filename);
+        }
 
         $orm = new SanPham();
         $orm->nhomsanpham_id = $request->nhomsanpham_id;
@@ -234,22 +216,9 @@ class SanPhamController extends Controller
         $orm->tensanpham_slug = Str::slug($request->tensanpham, '-');
         $orm->soluong = $request->soluong;
         $orm->dongia = $request->dongia;
+        if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
         $orm->motasanpham = $request->motasanpham;
         $orm->save();
-
-         if ($request->hasfile('hinhanh')) {
-            $hinhanh = $request->file('hinhanh');
-
-            foreach($hinhanh as $image) {
-                $name = $image->getClientOriginalName();
-                $path = $image->storeAs($orm->tensanpham_slug, $name, 'public');
-                $anh = new HinhAnh();
-                $anh->sanpham_id = $orm->id;
-                $anh->hinhanh = $name;
-                $anh->thumuc = 'public/'.$orm->tensanpham_slug;
-                $anh->save();
-            }
-         }
         return redirect()->route('nhanvien.sanpham');
 
     }
@@ -265,7 +234,7 @@ class SanPhamController extends Controller
     }
     public function postSua_NhanVien(Request $request , $id)
     {
-        $this->validate($request,[
+          $this->validate($request,[
             'nhomsanpham_id' => ['required'],
             'loaisanpham_id'=>['required'],
             'thuonghieu_id'=>['required'],
@@ -274,8 +243,27 @@ class SanPhamController extends Controller
             'tensanpham'=>['required','string','max:191','unique:sanpham,tensanpham,'.$id],
             'soluong'=>['required','numeric'],
             'dongia'=>['required','numeric'],
-            'hinhanh' => ['nullable','image','max:1024']
+            'hinhanh' => ['nullable','image','max:1024'],
         ]);
+        $path = '';
+        if($request->hasFile('hinhanh'))
+        {
+
+            // Xóa tập tin cũ
+            $sp = SanPham::find($id);
+            Storage::delete($sp->hinhanh);
+
+            // Tạo thư mục nếu chưa có
+            $lsp = LoaiSanPham::find($request->loaisanpham_id);
+            File::isDirectory($lsp->tenloai_slug) or Storage::makeDirectory($lsp->tenloai_slug, 0775);
+            
+            // Xác định tên tập tin
+            $extension = $request->file('hinhanh')->extension();
+            $filename = Str::slug($request->tensanpham, '-') . '.' . $extension;
+            
+            // Upload vào thư mục và trả về đường dẫn
+            $path = Storage::putFileAs($lsp->tenloai_slug, $request->file('hinhanh'), $filename);
+        }
         $orm = SanPham::find($id);
         $orm->nhomsanpham_id = $request->nhomsanpham_id;
         $orm->loaisanpham_id = $request->loaisanpham_id;
@@ -286,34 +274,26 @@ class SanPhamController extends Controller
         $orm->tensanpham_slug = Str::slug($request->tensanpham, '-');
         $orm->soluong = $request->soluong;
         $orm->dongia = $request->dongia;
-
-        $sanphamid= $request->id;
-        
-        if ($request->hasfile('anhbia')) 
-        {
-            $anhbia = $request->file('anhbia');
-            $hinhanh = HinhAnh::where('sanpham_id',$orm->id)->delete();
-            Storage::deleteDirectory('public/'.$orm->tensanpham_slug);
-            foreach($anhbia as $image) 
-            {
-                $name = $image->getClientOriginalName();
-                $path = $image->storeAs($orm->tensanpham_slug, $name, 'public');
-                $anh = new HinhAnh();
-                $anh->sanpham_id = $sanphamid;
-                $anh->hinhanh = $name;
-                $anh->thumuc =  'public/'.$orm->tensanpham_slug;
-                $anh->save();
-            }
-         }
+        if($request->hasFile('hinhanh')) $orm->hinhanh = $path;
+        $orm->motasanpham = $request->motasanpham;
+        $orm->save();
         return redirect()->route('nhanvien.sanpham');
 
     }
     public function getXoa_NhanVien($id)
-    {
-        $orm=SanPham::find($id);
-        $hinhanh = HinhAnh::where('sanpham_id',$orm->id)->delete();
-        Storage::deleteDirectory('public/'.$orm->tensanpham_slug);
+    {  $orm = SanPham::find($id);
         $orm->delete();
+        
+        // Xóa tập tin khi xóa sản phẩm
+        Storage::delete($orm->hinhanh);
+        
+        return redirect()->route('nhanvien.sanpham');
+    }
+     public function getHienThi_NhanVien($id)
+    {
+        $orm = SanPham::find($id);
+        $orm->hienthi= 1 - $orm->hienthi;
+        $orm->save();
         return redirect()->route('nhanvien.sanpham');
     }
 
