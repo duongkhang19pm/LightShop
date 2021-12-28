@@ -70,7 +70,7 @@
                                               <div class="col-lg-12 offset-lg-2">
                                             <button type="submit" class="btn btn-primary py-3 px-6">Đăng nhập</button>
                                             OR
-                                            <button type="submit" class="btn btn-primary py-3 px-4"><i class="fa fa-envelope" aria-hidden="true"></i> Email</button> </div>
+                                            <a  href="{{ route('google.login') }}" class="btn btn-primary py-3 px-4"><i class="fa fa-envelope" aria-hidden="true"></i> Email</a> </div>
                                         </form>
                                          <div class="text-center">
                                          <a href="{{ route('frontend.dangky') }}" class="or-login text-primary">hoặc Đăng ký</a>

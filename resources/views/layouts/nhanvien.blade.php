@@ -81,7 +81,7 @@
 
                         </li>
                          <li class="sidebar-item  ">
-                            <a href="#" class='sidebar-link'>
+                            <a href="{{route('nhanvien.donhang')}}" class='sidebar-link'>
                                 <i data-feather="layout" width="20"></i>
                                 <span>Đơn hàng</span>
                             </a>

@@ -42,6 +42,7 @@ class DonHangController extends Controller
         }
         else
         {
+            
             $orm->tinhtrang_id =  $tinhtrang_id - 10;
             $orm->save();
             return redirect()->route('admin.donhang');
@@ -107,4 +108,63 @@ class DonHangController extends Controller
         
       
     }
+
+
+      public function getDanhSach_NhanVien()
+    {
+        
+        $donhang = DonHang::orderBy('created_at', 'desc')->get();
+        $tinhtrang = TinhTrang::all();
+        return view('nhanvien.donhang.danhsach', compact('donhang','tinhtrang'));
+    }
+    public function getTinhTrang_NhanVien($id,$tinhtrang_id)
+    {
+        
+        $orm = DonHang::find($id);
+        $tinhtrang = TinhTrang::find($tinhtrang_id);
+        if($tinhtrang_id == 110)
+        {
+            $orm->tinhtrang_id =  $tinhtrang_id / 10 - 1;
+            $orm->save();
+            return redirect()->route('nhanvien.donhang');
+        }
+        else
+        {
+            $orm->tinhtrang_id =  $tinhtrang_id - 10;
+            $orm->save();
+            return redirect()->route('nhanvien.donhang');
+        }
+       
+    }
+     public function getSua_NhanVien($id)
+    {
+        $donhang = DonHang::find($id);
+        if($donhang->tinhtrang_id <= 4)
+        {
+            $tinhtrang = TinhTrang::all();
+             return view('nhanvien.donhang.sua', compact('donhang', 'tinhtrang'));
+        }
+        else
+        {
+            return redirect()->route('nhanvien.donhang')->with('status','Tình trạng đơn hàng không thê cập nhật');
+        }
+        
+    }
+     public function postSua_NhanVien(Request $request, $id)
+    {
+        $this->validate($request, [
+            'tinhtrang_id' => ['required'],
+            'dienthoaigiaohang' => ['required', 'string', 'max:20'],
+            'diachigiaohang' => ['required', 'string', 'max:191'],
+        ]);
+        
+        $orm = DonHang::find($id);
+        $orm->tinhtrang_id = $request->tinhtrang_id;
+        $orm->dienthoaigiaohang = $request->dienthoaigiaohang;
+        $orm->diachigiaohang = $request->diachigiaohang;
+        $orm->save();
+        
+        return redirect()->route('nhanvien.donhang');
+    }
+    
 }

@@ -26,6 +26,11 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
 Route::get('/403', [HomeController::class, 'get403'])->name('403');
 Route::get('/TimKiem', [HomeController::class, 'getTimKiem'])->name('frontend.timkiem');
+
+// Google OAuth
+Route::get('/login/google', [HomeController::class, 'getGoogleLogin'])->name('google.login');
+Route::get('/login/google/callback', [HomeController::class, 'getGoogleCallback'])->name('google.callback');
+
 //Route::post('/tim-kiem', [HomeController::class, 'postTimKiem'])->name('frontend');
 // Trang sản phẩm
 Route::get('/sanpham', [HomeController::class, 'getSanPham'])->name('frontend.sanpham');
@@ -220,6 +225,20 @@ Route::prefix('nhanvien')->name('nhanvien.')->middleware('nhanvien')->group(func
      Route::get('/lienhe/them', [LienHeController::class, 'getThem_NhanVien'])->name('lienhe.them');
      Route::post('/lienhe/them', [LienHeController::class, 'postThem_NhanVien'])->name('lienhe.them');
      Route::get('/lienhe/xoa/{id}', [LienHeController::class, 'getXoa_NhanVien'])->name('lienhe.xoa');
+
+     // Quản lý Đơn hàng
+
+    Route::get('/donhang', [DonHangController::class, 'getDanhSach_NhanVien'])->name('donhang');
+    Route::get('/donhang/sua/{id}', [DonHangController::class, 'getSua_NhanVien'])->name('donhang.sua');
+    Route::post('/donhang/sua/{id}', [DonHangController::class, 'postSua_NhanVien'])->name('donhang.sua');
+    Route::get('/donhang/xoa/{id}', [DonHangController::class, 'getXoa_NhanVien'])->name('donhang.xoa');
+    Route::get('/donhang/tinhtrang/{id}/{tinhtrang_id}', [DonHangController::class, 'getTinhTrang_NhanVien'])->name('donhang.tinhtrang');
+    
+    // Quản lý Đơn hàng chi tiết
+    Route::get('/donhang/chitiet', [DonHangChiTietController::class, 'getDanhSach_NhanVien'])->name('donhang.chitiet');
+    Route::get('/donhang/chitiet/sua/{id}', [DonHangChiTietController::class, 'getSua_NhanVien'])->name('donhang.chitiet.sua');
+    Route::post('/donhang/chitiet/sua/{id}', [DonHangChiTietController::class, 'postSua'])->name('donhang.chitiet.sua');
+    Route::get('/donhang/chitiet/xoa/{id}', [DonHangChiTietController::class, 'getXoa_NhanVien'])->name('donhang.chitiet.xoa');
 });
 
 Route::prefix('khachhang')->name('khachhang.')->group(function(){

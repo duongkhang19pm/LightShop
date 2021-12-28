@@ -14,11 +14,14 @@ use App\Models\NhomSanPham;
 use App\Models\LoaiSanPham;
 use App\Models\LienHe;
 use App\Mail\DatHangEmail;
+use App\Models\TaiKhoan;
 use Illuminate\Support\Facades\Mail;
 use Str;
 use Storage;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+use Socialite;
 use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
@@ -29,7 +32,48 @@ class HomeController extends Controller
     {
         
     }
-    
+    public function getGoogleLogin()
+     {
+        return Socialite::driver('google')->redirect();
+     }
+
+     public function getGoogleCallback()
+     {
+         try
+         {
+             $user = Socialite::driver('google')
+             ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
+             ->stateless()
+             ->user();
+         }
+         catch(Exception $e)
+         {
+            return redirect()->route('frontend.dangnhap')->with('warning', 'Lỗi xác thực. Xin vui lòng thử lại!');
+         }
+
+         $existingUser = TaiKhoan::where('email', $user->email)->first();
+         if($existingUser)
+         {
+             // Nếu người dùng đã tồn tại thì đăng nhập
+             Auth::login($existingUser, true);
+             return redirect()->route('frontend');
+         }
+         else
+         {
+             // Nếu chưa tồn tại người dùng thì thêm mới
+                 $newUser = TaiKhoan::create([
+                 'name' => $user->name,
+                 'username' => Str::before($user->email, '@'),
+                 'email' => $user->email,
+                 'password' => Hash::make('lightstore@2021'), // Gán mật khẩu tự do
+            ]);
+
+             // Sau đó đăng nhập
+             Auth::login($newUser, true);
+             return redirect()->route('frontend');
+         }
+     }
+
     public function getHome()
     {
         $thuonghieu = ThuongHieu::all();
@@ -283,6 +327,8 @@ class HomeController extends Controller
     {
         return view('frontend.gioithieu');
     }
+
+
 
     
 
