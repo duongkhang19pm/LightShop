@@ -9,10 +9,17 @@ use App\Models\BaiViet;
 use App\Models\HinhAnh;
 use App\Models\DonHang;
 use App\Models\DonHang_ChiTiet;
+use App\Models\ChuDe;
+use App\Models\NhomSanPham;
+use App\Models\LoaiSanPham;
+use App\Models\LienHe;
+use App\Mail\DatHangEmail;
+use Illuminate\Support\Facades\Mail;
 use Str;
 use Storage;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
+use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
     
@@ -26,12 +33,21 @@ class HomeController extends Controller
     public function getHome()
     {
         $thuonghieu = ThuongHieu::all();
-        $sanpham = SanPham::Where('hienthi',1)->paginate(20);
-        $baiviet = BaiViet::Where('kiemduyet',1)->paginate(20);
+        $sanpham = SanPham::Where('hienthi',1)->orderby('created_at','desc')->paginate(8);
+        $baiviet = BaiViet::Where('kiemduyet',1)->orderby('created_at','desc')->paginate(4);
         return view('frontend.index', compact('sanpham','baiviet'));
     }
 
-    
+      public function getTimKiem(Request $request)
+    {
+       
+        $key = $request->get('key');
+        $ketqua = SanPham::where('tensanpham','like','%'.$key.'%')->get();
+        $baiviet = BaiViet::Where('kiemduyet',1)->orderby('created_at','desc')->paginate(4);
+        return view('frontend.timkiem', compact('key','baiviet','ketqua'));
+        //return view('frontend.timkiem', array('key' => $key ,'ketqua' => $ketqua ,'baiviet'=>$baiviet));
+      
+    }
     public function getGioHang()
     {
         if(Cart::count() <= 0)
@@ -84,12 +100,27 @@ class HomeController extends Controller
 
     public function getGioHang_Tang($row_id)
     {
-        $row = Cart::get($row_id);
-        if($row->qty < 10)
-        {
-            Cart::update($row_id, $row->qty + 1);
-        }
-        return redirect()->route('frontend.giohang');
+       $row = Cart::get($row_id);
+         $sanpham = SanPham::find($row->id);
+         if($row->qty < $sanpham->soluong )
+         {
+
+            if($row->qty < 10)
+
+            {
+                Cart::update($row_id, $row->qty + 1);
+                return redirect()->route('frontend.giohang');
+            }
+            else
+             {
+                return redirect()->route('frontend.giohang')->with('status','Sản Phẩm <strong>'.$sanpham->tensanpham.'</strong> chỉ được mua 1 lần / 10 sản phẩm');
+             }
+            
+         }
+         else
+         {
+            return redirect()->route('frontend.giohang')->with('status','Sản Phẩm <strong>'.$sanpham->tensanpham.'</strong> chỉ còn <strong>'.$sanpham->soluong.'</strong> sản phẩm không đủ số lượng');
+         }
     }
 
 
@@ -103,7 +134,7 @@ class HomeController extends Controller
         }
         else
         {
-             return redirect()->route('login');
+             return redirect()->route('frontend.dangnhap');
         }
        
     }
@@ -132,8 +163,12 @@ class HomeController extends Controller
             $ct->soluongban = $value->qty;
             $ct->dongiaban = $value->total;
             $ct->save();
+            $sp = SanPham::find($value->id);
+            $sp->soluong -=  $value->qty;
+            $sp->save();
         }
 
+        Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
         return redirect()->route('frontend.dathangthanhcong');
     }
 
@@ -150,13 +185,69 @@ class HomeController extends Controller
         return view('errors.403');
     }
 
+     public function getSanPham()
+     {
 
+        $nhomsanpham = NhomSanPham::all();
+        $sanpham = SanPham::orderby('created_at','desc')->paginate(20);
+        $baiviet = BaiViet::Where('kiemduyet',1)->orderby('created_at','desc')->paginate(3);
+        return view('frontend.SanPham',compact('sanpham','nhomsanpham','baiviet'));
+         
+     }
      public function getSanPham_ChiTiet($tensanpham_slug)
      {
-        $a= $tensanpham_slug;
-        // $sanpham = SanPham::where('tensanpham_slug',$tensanpham_slug);
+       
+       $sanpham = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
+         return view('frontend.sanpham_chitiet',compact('sanpham'));
+         
+     }
+    public function getSanPham_Nhom($tennhom_slug)
+     {
+        $loaisanpham = LoaiSanPham::all();
+        $nhomsanpham = NhomSanPham::where('tennhom_slug', $tennhom_slug)->first();
+        $sanpham = SanPham::where('nhomsanpham_id', $nhomsanpham->id)->orderby('created_at','desc')->paginate(20);
+        $baiviet = BaiViet::Where('kiemduyet',1)->orderby('created_at','desc')->paginate(3);
+         return view('frontend.sanpham_nhom',compact('sanpham','loaisanpham','nhomsanpham','baiviet'));
+         
+     }
+     public function getSanPham_Loai($tennhom_slug,$tenloai_slug)
+     {
+        $baiviet = BaiViet::Where('kiemduyet',1)->orderby('created_at','desc')->paginate(3);
+       
+         $loaisanpham = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
+         
+            $sanpham = SanPham::where('loaisanpham_id', $loaisanpham->id)->orderby('created_at','desc')->paginate(20);
+            
+            return view('frontend.sanpham_loai',compact('sanpham','loaisanpham','baiviet'));
+         
+        
+         
+     }
 
-         return view('frontend.sanpham_chitiet',compact('a'));
+
+      public function getBaiViet()
+     {
+        $baiviet = BaiViet::orderby('created_at','desc')->paginate(10);
+         return view('frontend.baiviet',compact('baiviet'));
+     }
+       public function getBaiViet_ChiTiet($tenchude_slug,$tieude_slug)
+     {
+        $chude = ChuDe::all();
+        $baiviet1 = BaiViet::Where('kiemduyet',1)->orderby('created_at','desc')->paginate(3);
+        $baiviet2 = BaiViet::where('tieude_slug', $tieude_slug)->first();
+        $baiviet = 'baiviet' . $tieude_slug;
+        if (!Session::has($baiviet)) {
+            BaiViet::where('tieude_slug', $tieude_slug)->increment('luotxem');
+            Session::put($baiviet, 1);
+        }
+         return view('frontend.baiviet_chitiet',compact('baiviet','baiviet1','baiviet2','chude'));
+     }
+     
+      public function getBaiViet_ChuDe($tenchude_slug)
+     {
+        $chude = ChuDe::where('tenchude_slug', $tenchude_slug)->first();
+        $baiviet = BaiViet::where('chude_id', $chude->id)->orderby('created_at','desc')->paginate(4);
+         return view('frontend.baiviet_chude',compact('baiviet'));
          
      }
      public function getDangNhap()
@@ -167,6 +258,32 @@ class HomeController extends Controller
     {
         return view('frontend.dangky');
     }
+     public function getLienHe()
+    {
+        return view('frontend.lienhe');
+    }
+    public function postLienHe(Request $request)
+    {
+         $this->validate($request, [
+            'hovaten' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'max:191'],
+            'sodienthoai' => ['required', 'string', 'max:12', 'min:10'],
+            'noidung' => ['required']
+        ]);
+        //thêm
+        $orm = new LienHe();
+        $orm->hovaten = $request->hovaten;
+        $orm->email = $request->email;
+        $orm->sodienthoai = $request->sodienthoai;
+        $orm->noidung = $request->noidung;
+        $orm->save();
+        return redirect()->route('frontend');
+    }
+     public function getGioiThieu()
+    {
+        return view('frontend.gioithieu');
+    }
 
+    
 
 }

@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
   
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+    {{ config('app.name', 'Laravel') }}
+  </title>
+   <link rel="shortcut icon" href="{{asset('public/images/logo.png')}}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -49,7 +52,7 @@
                         @endif
                       @else
                         <p class="mb-0">
-                        <a class="mr-3" href="#">{{ Auth::user()->name }}  </a>
+                        <a class="mr-3" href="{{route('khachhang.home')}}">{{ Auth::user()->name }}  </a>
                         <a  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                         <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                           @csrf
@@ -62,7 +65,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
@@ -95,6 +98,7 @@
           @endif
         </div>
 
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
           </button>
@@ -102,26 +106,27 @@
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active"><a href="{{route('frontend')}}" class="nav-link">Trang chủ</a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">về chúng tôi</a></li>
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">sản phẩm</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="product.html">Products</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
-              </div>
-            </li>
-              <li class="nav-item"><a href="blog.html" class="nav-link">Tin tức</a></li>
-              <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+              <li class="nav-item"><a href="{{route('frontend.gioithieu')}}" class="nav-link">về chúng tôi</a></li>
+              <li class="nav-item"><a href="{{route('frontend.sanpham')}}" class="nav-link">sản phẩm</a></li>
+              <li class="nav-item"><a href="{{route('frontend.baiviet')}}" class="nav-link">Bài Viết</a></li>
+              <li class="nav-item"><a href="{{route('frontend.lienhe')}}" class="nav-link">Liên hệ</a></li>
             </ul>
+            
           </div>
+
+
         </div>
+        <form class="form-inline" action="{{route('frontend.timkiem')}}">
+          @csrf
+          <input class="form-control-outline-white mr-sm-2" type="search" name="key" placeholder="Search" aria-label="Search">
+          <button class="btn btn-white btn-outline-white my-2 my-sm-0" type="submit">Search</button>
+        </form>
       </nav>
+      
     <!-- END nav -->
      @yield('content')
    
-
+      
     <footer class="ftco-footer">
       <div class="container">
         <div class="row mb-5">
@@ -173,7 +178,7 @@
                   <ul>
                     <li><span class="icon fa fa-map marker"></span><span class="text">An Giang University.</span></li>
                     <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+84 999 999 999</span></a></li>
-                    <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text">LightStore@student.agu.edu.vn</span></a></li>
+                    <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text">LightStore@gmail.com</span></a></li>
                   </ul>
                 </div>
             </div>

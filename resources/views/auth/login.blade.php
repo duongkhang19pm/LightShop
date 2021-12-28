@@ -75,27 +75,14 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label for="checkbox1">Duy trì đăng nhập</label>
                                 </div>
-                                <div class="float-end">
-                                    <a href="{{ route('register') }}">Tạo tài khoản mới ?</a>
-                                </div>
+                               
                             </div>
                             <div class="clearfix">
                                 <button class="btn btn-dark float-end">Đăng Nhập</button>
                             </div>
                         </form>
-                        <div class="divider">
-                            <div class="divider-text">OR</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <button class="btn btn-block mb-2 btn-primary"><i data-feather="facebook"></i>
-                                    Facebook</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <button class="btn btn-block mb-2 btn-danger"><i data-feather="mail"></i>
-                                    Gmail</button>
-                            </div>
-                        </div>
+                        
+                       
                     </div>
                 </div>
             </div>

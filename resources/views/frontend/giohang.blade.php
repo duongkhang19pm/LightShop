@@ -17,10 +17,19 @@
 	        </div>
 	      </div>
 	</section>
+	 @if (session('status'))
+        <div class="alert alert-danger" role="alert">
+            {!! session('status') !!}
+        </div>
+    @endif
     <section class="ftco-section">
     	<div class="container">
     		<div class="row">
+
     			<div class="table-wrap">
+    				<div class="row justify-content-left">
+    			<p class="text-center"><a href="{{route('frontend')}}" class="btn btn-info py-3 px-4">Tiếp Tục Mua Hàng</a></p>
+    		</div>
 						<table class="table">
 						  <thead class="thead-primary">
 						    <tr class="text-center">
@@ -56,7 +65,9 @@
 						</table>
 					</div>
     		</div>
+
     		<div class="row justify-content-end">
+
     			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
     					<h3>Tổng Tiền Giỏ Hàng</h3>
@@ -81,6 +92,7 @@
     				<p class="text-center"><a href="{{route('frontend.dathang')}}" class="btn btn-primary py-3 px-4">Tiến Hành Thanh Toán</a></p>
     			</div>
     		</div>
+    		
     	</div>
     </section>
 @endsection

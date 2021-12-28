@@ -60,15 +60,21 @@
                                                     <div class="radio">
                                                       <label class="mr-3"><input type="radio" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> Lưu mật khẩu</label>
                                                        @if (Route::has('password.request'))
-                                                      <a href="{{ route('password.request') }}">Quên mật khẩu đăng nhập?</a>
-                                                      @endif
+                                        <a class="float-end" href="{{ route('password.request') }}">
+                                            <small>Quên mật khẩu đăng nhập?</small>
+                                        </a>
+                                    @endif
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            <button type="submit" class="btn btn-primary py-3 px-4">Đăng nhập</button>
-                                            <a href="{{ route('register') }}" class="or-login">hoặc Đăng ký</a>
+                                              <div class="col-lg-12 offset-lg-2">
+                                            <button type="submit" class="btn btn-primary py-3 px-6">Đăng nhập</button>
+                                            OR
+                                            <button type="submit" class="btn btn-primary py-3 px-4"><i class="fa fa-envelope" aria-hidden="true"></i> Email</button> </div>
                                         </form>
+                                         <div class="text-center">
+                                         <a href="{{ route('frontend.dangky') }}" class="or-login text-primary">hoặc Đăng ký</a>
+                                         </div>
                                         
                                     </div>
                                 </div>

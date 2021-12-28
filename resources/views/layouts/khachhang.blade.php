@@ -1,300 +1,184 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Fashi Template">
-    <meta name="keywords" content="Fashi, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en">
+  <head>
+  
     <title>{{ config('app.name', 'Laravel') }}</title>
+     <link rel="shortcut icon" href="{{asset('public/images/logo.png')}}" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{asset('public/frontend/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/themify-icons.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/elegant-icons.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/nice-select.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/jquery-ui.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}" type="text/css">
-</head>
+    <link rel="stylesheet" href="{{asset('public/frontend/css/animate.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('public/frontend/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/magnific-popup.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('public/frontend/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+  </head>
+  <body>
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="header-top">
+    <div class="wrap">
             <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        KTT@student.agu.edu.vn
-                    </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +84 99.999.999
-                    </div>
-                </div>
-                <div class="ht-right">
- 
-                        @guest
-                            @if (Route::has('login'))
-                                
-                                 <a href="{{route('login')}}" class="login-panel ml-4"><i class="fa fa-user"></i>Đăng nhập</a>
-                            @endif
-                            @if (Route::has('register'))
-                                  <a href="{{route('register')}}" class="login-panel"><i class="fa fa-user"></i>Đăng ký</a>
-                               
-                            @endif
-                        @else
-                            <a class="login-panel ml-4">{{ Auth::user()->name }}</a>
-                            <a class="login-panel" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i data-feather="log-out"></i> Đăng Xuất </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
-                                    @csrf
-                                </form>
-                        @endguest
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select>
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="inner-header">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3">
-                        <div class="logo">
-                            <a href="./index.html">
-                                <img src="img/logo.png" alt="">
-                            </a>
-                        </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <p class="mb-0 phone pl-md-2">
+                            <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span>+84 999 999 999</a> 
+                            <a href="#"><span class="fa fa-paper-plane mr-1"></span> LightStore@gmail.com</a>
+                        </p>
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="advanced-search">
-                            <button type="button" class="category-btn">Tìm Kiếm</button>
-                            <div class="input-group">
-                                <input type="text" placeholder="Bạn cần tìm gì?">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        <ul class="nav-right">
-                            <li class="heart-icon">
-                                <a href="#">
-                                    <i class="icon_heart_alt"></i>
-                                    <span>1</span>
-                                </a>
-                            </li>
-                            <li class="cart-icon">
-                                <a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span>3</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="select-total">
-                                        <span>total:</span>
-                                        <h5>$120.00</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="cart-price">$150.00</li>
-                        </ul>
+                    <div class="col-md-6 d-flex justify-content-md-end">
+                        <div class="social-media mr-4">
+                        <p class="mb-0 d-flex">
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+                        </p>
+                </div>
+                <div class="reg">
+                    
+                      @guest
+                        @if (Route::has('login'))
+                        <p class="mb-0">
+                        <a href="{{ route('frontend.dangnhap') }}">Đăng nhập</a></p>
+                        @endif
+                      @else
+                        <p class="mb-0">
+                        <a class="mr-3" href="#">{{ Auth::user()->name }}  </a>
+                        <a  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
+                          @csrf
+                        </form>
+                        </p>
+                      @endguest
+
+
+                </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="nav-item">
-            <div class="container">
-                <div class="nav-depart">
-                    <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <nav class="nav-menu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <div id="mobile-menu-wrap"></div>
-            </div>
+    
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="{{route('frontend')}}">Light <span>Store</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+          </button>
+
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active"><a href="{{route('frontend')}}" class="nav-link">Trang chủ</a></li>
+              <li class="nav-item"><a href="{{route('frontend.gioithieu')}}" class="nav-link">về chúng tôi</a></li>
+              <li class="nav-item"><a href="{{route('frontend.sanpham')}}" class="nav-link">sản phẩm</a></li>
+              <li class="nav-item"><a href="{{route('frontend.baiviet')}}" class="nav-link">Bài Viết</a></li>
+              <li class="nav-item"><a href="{{route('frontend.lienhe')}}" class="nav-link">Liên hệ</a></li>
+            </ul>
+          </div>
         </div>
-    </header>
-    <!-- Header End -->
+      </nav>
+    <!-- END nav -->
+     @yield('content')
+   
 
-    @yield('content')
-
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
+    <footer class="ftco-footer">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2 logo"><a href="#">Light <span>Store</span></a></h2>
+              <p>Chúng tôi cam kết mang đến cho Quý khách hàng những sản phẩm chính hãng, những mẫu mã mới nhất với chất lượng cao và giá cả hợp lý.</p>
+              <ul class="ftco-footer-social list-unstyled mt-2">
+                <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Tài khoản</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đăng ký</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Đăng nhập</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Thông tin</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Về chúng tôi</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Sản Phẩm</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Liên hệ</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Tin tức</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Kết nối</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>FaceBook</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Git Hub</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Zalo</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">Giải Đáp Thắc Mắc?</h2>
+                <div class="block-23 mb-3">
+                  <ul>
+                    <li><span class="icon fa fa-map marker"></span><span class="text">An Giang University.</span></li>
+                    <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+84 999 999 999</span></a></li>
+                    <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text">LightStore@gmail.com</span></a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid px-0 py-5 bg-black">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="footer-left">
-                        <div class="footer-logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
-                        </ul>
-                        <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1">
-                    <div class="footer-widget">
-                        <h5>Information</h5>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="footer-widget">
-                        <h5>My Account</h5>
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Enter Your Mail">
-                            <button type="button">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
+              <div class="col-md-12">
+        
+                <p class="mb-0" style="color: rgba(255,255,255,.5);"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+      Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> -Bởi Khang - Trâm - Trang
+      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+              </div>
             </div>
         </div>
-        <div class="copyright-reserved">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </div>
-                        <div class="payment-pic">
-                            <img src="img/payment-method.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </footer>
-    <!-- Footer Section End -->
+    
+  
 
-    <!-- Js Plugins -->
-    <script src="{{asset('public/frontend/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery-ui.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.countdown.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.nice-select.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.zoom.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.dd.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.slicknav.js')}}"></script>
-    <script src="{{asset('public/frontend/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/main.js')}}"></script>
-</body>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+
+  <script src="{{asset('public/frontend/js/jquery.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery-migrate-3.0.1.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/popper.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.easing.1.3.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.stellar.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/jquery.animateNumber.min.js')}}"></script>
+  <script src="{{asset('public/frontend/js/scrollax.min.js')}}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{{asset('public/frontend/js/google-map.js')}}"></script>
+  <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    
+  </body>
 </html>

@@ -40,6 +40,13 @@
                             </a>
 
                         </li>
+                        <li class="sidebar-item active ">
+                            <a href="{{ route('admin.doanhthu') }}" class='sidebar-link'>
+                                <i data-feather="admin.home" width="20"></i>
+                                <span>Doanh Thu</span>
+                            </a>
+
+                        </li>
 
                         @guest
                             @if (Route::has('login'))
@@ -191,10 +198,6 @@
                                ( Quyền Hạn: {{ Auth::user()->role }} )
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Đổi mật khẩu</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Lịch sử mua hàng</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i data-feather="log-out"></i> Đăng Xuất</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                                     @csrf

@@ -21,6 +21,14 @@ class DonHangController extends Controller
         $tinhtrang = TinhTrang::all();
         return view('admin.donhang.danhsach', compact('donhang','tinhtrang'));
     }
+    public function getDoanhThu()
+    {
+        return view('admin.doanhthu');
+    }
+    public function getJSON ()
+    {
+        
+    }
     public function getTinhTrang($id,$tinhtrang_id)
     {
         

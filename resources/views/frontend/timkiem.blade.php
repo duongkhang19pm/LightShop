@@ -134,9 +134,13 @@
             <h2>Sản Phẩm</h2>
           </div>
         </div>
+                @if($ketqua->isEmpty())
+                <h4 class="text-center text-danger">Xin lỗi , không tìm thấy kết quả nào cho từ khóa: {{$key}}</h4>
+                @else
+                 <h4 class="text-center text-success">Có {{$ketqua->count()}} sản phẩm được tìm thấy</h4>
                 <div class="row">
                 
-                    @foreach($sanpham as $value)
+                    @foreach($ketqua as $value)
                     <div class="col-md-3 d-flex">
                         <div class="product ftco-animate">
                          <div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{env('APP_URL').'/storage/app/'.$value->hinhanh}}');">
@@ -156,6 +160,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
                 <div class="row justify-content-center">
                     <div class="col-md-4">
                         <a href="{{route('frontend.sanpham')}}" class="btn btn-primary d-block">Xem Nhiều Hơn <span class="fa fa-long-arrow-right"></span></a>

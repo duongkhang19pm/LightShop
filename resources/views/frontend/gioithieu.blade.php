@@ -1,24 +1,21 @@
-    @extends('layouts.frontend')
+      @extends('layouts.frontend')
 
 @section('pagetitle')
     Frontend
 @endsection
 
 @section('content')
-   <div class="hero-wrap" style="background-image: url('{{asset('public/frontend/images/hero-bg-3.jpg')}}');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-8 ftco-animate d-flex align-items-end">
-            <div class="text w-100 text-center">
-                <h1 class="mb-4"><span>Sản Phẩm - Dịch Vụ</span> Hoàn Hảo <span>Nhất</span>.</h1>
-                <p><a href="#" class="btn btn-primary py-2 px-4">Đặt Hàng Ngay</a> <a href="#" class="btn btn-white btn-outline-white py-2 px-4">Tìm Hiểu Thêm</a></p>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('public/frontend/images/hero-bg-3.jpg')}}');" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+              <div class="col-md-9 ftco-animate mb-5 text-center">
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Trang Chủ <i class="fa fa-chevron-right"></i></a></span> <span>Giới Thiệu <i class="fa fa-chevron-right"></i></span></p>
+                <h2 class="mb-0 bread">GIỚI THIỆU</h2>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
+    </section>
     <section class="ftco-intro">
         <div class="container">
             <div class="row no-gutters">
@@ -58,7 +55,7 @@
             </div>
         </div>
     </section>
-   
+
     <section class="ftco-section ftco-no-pb">
             <div class="container">
                 <div class="row">
@@ -122,44 +119,6 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <section class="ftco-section">
-            <div class="container">
-                <div class="row justify-content-center pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">Dịch vụ của chúng tôi</span>
-            <h2>Sản Phẩm</h2>
-          </div>
-        </div>
-                <div class="row">
-                
-                    @foreach($sanpham as $value)
-                    <div class="col-md-3 d-flex">
-                        <div class="product ftco-animate">
-                         <div class="img d-flex align-items-center justify-content-center" style="background-image: url('{{env('APP_URL').'/storage/app/'.$value->hinhanh}}');">
-                                <div class="desc">
-                                    <p class="meta-prod d-flex">
-                                        <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                        
-                                        <a href="{{ route('frontend.sanpham_chitiet', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="text text-center">
-                                <h2>{{$value->tensanpham}}</h2>
-                                <p class="mb-0"><span class="price text-danger"> {{ number_format($value->dongia) }} <sup>đ</sup> </span></p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <a href="{{route('frontend.sanpham')}}" class="btn btn-primary d-block">Xem Nhiều Hơn <span class="fa fa-long-arrow-right"></span></a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -256,42 +215,44 @@
         </div>
       </div>
     </section>
-
-
-        
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">Tin Tức</span>
-            <h2>Tin Tức Mới Nhất</h2>
-          </div>
-        </div>
-        <div class="row d-flex">
-            @foreach($baiviet as $value)
-          <div class="col-lg-6 d-flex align-items-stretch ftco-animate">
-            <div class="blog-entry d-flex">
-                <a href="blog-single.html" class="block-20 img " style="background-image: url('{{asset('public/frontend/images/image_3.jpg')}}');">
-              </a>
-              <div class="text p-4 bg-light">
-                <div class="meta">
-                    <p>
-                        <span class="fa fa-calendar"></span>{{ $value->ngaydang}}
-                        <span class="fa fa-user"></span>{{ $value->taikhoan->name}}
-                        <span class="fa fa-eye"></span>{{ $value->luotxem}}
-
-                    </p>
-                    
-                </div>
-                <h3 class="heading mb-3"><a href="#">{{ $value->tieude }}</a></h3>
-                <p><?php echo Str::limit($value->tomtat, 100); ?></p>
-                <a href="{{ route('frontend.baiviet_chitiet', ['tenchude_slug' => $value->chude->tenchude_slug,'tieude_slug' => $value->tieude_slug]) }}" class="btn-custom">Xem Thêm <span class="fa fa-long-arrow-right"></span></a>
-
+        <section class="ftco-counter ftco-section ftco-no-pt ftco-no-pb img bg-light" id="section-counter">
+        <div class="container">
+            <div class="row">
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text align-items-center">
+                <strong class="number" data-number="1000">0</strong>
+                <span>KHÁCH HÀNG HÀI LÒNG</span>
               </div>
             </div>
           </div>
-          @endforeach
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text align-items-center">
+                <strong class="number" data-number="100">0</strong>
+                <span>SỐ NĂM KINH NGHIỆM</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text align-items-center">
+                <strong class="number" data-number="10">0</strong>
+                <span>CÁC LOẠI ĐÈN</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text align-items-center">
+                <strong class="number" data-number="40">0</strong>
+                <span>CÁC CHI NHÁNH</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>  
+        </div>
+    </section>
+
+   
 @endsection
